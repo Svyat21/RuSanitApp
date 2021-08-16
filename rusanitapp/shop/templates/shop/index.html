@@ -1,0 +1,9 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <p>содержимое главной страницы</p>
+    {% for product in products %}
+        <p>{{ product.pk }}. {{ product.name }}</p>
+    {% endfor %}
+{% endblock %}
