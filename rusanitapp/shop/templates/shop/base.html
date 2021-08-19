@@ -1,11 +1,56 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>{{ title_html }}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'shop/css/style.css' %}">
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+    <div class="main-container">
+        <div class="contain">
+            <header>
+                <nav class="nav">
+                    <div class="logo left-nav">
+                        <p>RuSanit</p>
+                    </div>
+                    <div class="main-menu">
+                        <a href="{% url 'home' %}">Главная</a>
+                        <a href="#">Доставка</a>
+                        <a href="#">Контакты</a>
+                        <div><a href="#">Корзина</a></div>
+                    </div>
+                    <div class="call right-nav">
+                        <div>
+                            <p>Заказать звонок</p>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+        </div>
+        <div class="intro-contain contain">
+            <div class="intro-text">
+                <h1 class="intro-h1">Локальная очистная станция RuSanit</h1>
+                <p class="intro-p">
+                    Предназначена для улучшенной очистки канализационных сбросов и рассчитана на постоянное проживание разного количества человек, 
+                    в зависимости от размеров станции
+                </p>
+                <a href="#" class="button">Подробнее</a>
+            </div>
+            <div class="intro-photo"></div>
+        </div>
+    </div>
+    <div class="content-conteiner">
+        <div class="contain content-center">
+            <div class="content">
+                <h1 class="h1">Каталог</h1>
+                <div class="card-list">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+                <a href="#" class="button">Еще</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,9 +1,23 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
-    <h1>{{ title }}</h1>
-    <p>содержимое главной страницы</p>
     {% for product in products %}
-        <p>{{ product.pk }}. {{ product.name }}</p>
+        <div class="card">
+            <div class="upper-part">
+                <p class="left-side"></p>
+                <div class="right-side">
+                    <p class="people">{{ product.specifications.people_amount }}</p>
+                </div>
+            </div>
+            <div class="card-photo">
+                <img src="" alt="#">
+            </div>
+            <p class="text-card-bold">{{ product.name }}</p>
+            <p class="text-card">{{ product.short_description }}</p>
+            <div class="lower-part">
+                <a href="{{ product.get_absolute_url }}" class="button-2">Подробнее</a>
+                <p class="text-card-bold">{{ product.price }}</p>
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}

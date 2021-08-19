@@ -1,3 +1,8 @@
 from django.contrib import admin
+from shop.models import *
 
-# Register your models here.
+admin.site.register(Product)
+admin.site.register(Customer)
+admin.site.register(Specifications)
+admin.site.register(Services)
+admin.site.register(PhotoAlbum)

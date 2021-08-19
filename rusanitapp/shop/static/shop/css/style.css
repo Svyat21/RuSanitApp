@@ -1,0 +1,172 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+body{
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+}
+.main-container{
+    max-width: 100%;
+    background-image: url(../images/heder_background.svg);
+    background-repeat: repeat-x;
+}
+.contain{
+    max-width: 1440px;
+    margin: 0 auto;
+}
+.nav{
+    height: 102px;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+}
+.logo p{
+    color: white;
+    font-size: 24px;
+}
+.logo{
+    margin-top: 27px;
+    height: 44px;
+    width: 135px;
+    background-image: url(../images/Union.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.left-nav{
+    margin-left: 130px;
+}
+.main-menu{
+    width: 415px;
+    display: flex;
+    justify-content: space-between;
+}
+.main-menu div{
+    margin-top: 38px;
+    height: 20px;
+    width: 95px;
+    background-image: url(../images/basket.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.main-menu a{
+    margin-top: 40px;
+    color: white;
+    font-size: 14px;
+    transition: color .2s linear;
+}
+.main-menu a:hover{
+    color: #B3CC5B;
+}
+.call{
+    margin-top: 30px;
+    height: 42px;
+    width: 195px;
+    background-color: white;
+    border-radius: 10px;
+    transition: background-color .2s linear;
+}
+.right-nav{
+    margin-right: 130px;
+}
+.call:hover{
+    background-color: #76D1FF;
+}
+.call div{
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 153px;
+    background-image: url(../images/call.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+.call p{
+    margin-left: 25px;
+}
+.intro-contain{
+    display: flex;
+    justify-content: space-between;
+}
+.intro-text{
+    margin-left: 130px;
+    min-width: 556px;
+    width: 565px;
+}
+.intro-photo{
+    width: 685px;
+    height: 425px;
+    background-image: url(../images/house.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+/* @media (max-width:1440px){
+    .intro-photo{
+        width: 767px;
+        background-image: url(../images/light-house.png);
+    }
+} */
+.intro-h1{
+    max-width: 556px;
+    font-weight: 700;
+    font-size: 50px;
+    color: white;
+}
+.intro-p{
+    max-width: 556px;
+    margin-top: 25px;
+    margin-bottom: 45px;
+    font-size: 22px;
+    color: white;
+}
+.button{
+    color: white;
+    padding: 15px 41px;
+    background-color: #76D1FF;
+    border-radius: 10px;
+    transition: background-color .2s linear;
+}
+.button:hover{
+    background-color: #5AA4C9;
+}
+.content-conteiner{
+    height: 923px;
+}
+.content-center{
+    display: flex;
+    justify-content: center;
+}
+.content{
+    margin-top: 154px;
+    max-width: 1180px;
+}
+.card-list{
+    display: flex;
+    justify-content: space-between;
+}
+.card{
+    width: 280px;
+    height: 404px;
+    transition: box-shadow .2s linear;
+}
+.card:hover{
+    box-shadow: 0px 0px 35px rgba(27, 123, 106, 0.3);
+    border-radius: 10px;
+}
+.button-2{
+    color: white;
+    padding: 10px 19.5px;
+    background-color: #76D1FF;
+    border-radius: 10px;
+    transition: background-color .2s linear;
+}
+.button-2:hover{
+    background-color: #5AA4C9;
+}
