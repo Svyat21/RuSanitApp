@@ -13,6 +13,7 @@ body{
     font-family: Open Sans;
     font-style: normal;
     font-weight: normal;
+    background-color: #F8F8F8;
 }
 .main-container{
     max-width: 100%;
@@ -148,17 +149,28 @@ body{
     max-width: 1180px;
 }
 .card-list{
+    margin-top: 50px;
     display: flex;
     justify-content: space-between;
 }
 .card{
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 280px;
     height: 404px;
     transition: box-shadow .2s linear;
+    background-color: white;
+    border-radius: 10px;
 }
 .card:hover{
     box-shadow: 0px 0px 35px rgba(27, 123, 106, 0.3);
     border-radius: 10px;
+}
+.card-contain{
+    max-height: 363px;
+    max-width: 236px;
 }
 .button-2{
     color: white;
@@ -169,4 +181,57 @@ body{
 }
 .button-2:hover{
     background-color: #5AA4C9;
+}
+.upper-part{
+    display: flex;
+    justify-content: space-between;
+}
+.right-side p{
+    color: #B3CC5B;
+    font-size: 14.2438px;
+    margin-left: 33px;
+    margin-bottom: 7px;
+}
+.right-side{
+    height: 23px;
+    width: 43px;
+    background-image: url(../images/people.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+.card-photo{
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+}
+.text-card-bold{
+    font-weight: bold;
+    color: #2D2D2F;
+    font-size: 14px;
+    font-weight: 500;
+}
+.text-card{
+    margin-top: 10px;
+    color: #9C9C9C;
+    font-size: 14px;
+}
+.lower-part{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.lower-part p{
+    margin-top: 12.5px;
+}
+.still{
+    display: flex;
+    justify-content: center;
+    margin: 50px auto 150px;
+}
+.h1{
+    color: #2D2D2F;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 120%;
 }
