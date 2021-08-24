@@ -85,7 +85,7 @@ body{
     margin-top: 10px;
     margin-left: 20px;
     width: 153px;
-    background-image: url(../images/call.svg);
+    background-image: url(../../shop/images/call.svg);
     background-repeat: no-repeat;
     background-position: left;
 }
@@ -195,7 +195,7 @@ body{
 .right-side{
     height: 23px;
     width: 43px;
-    background-image: url(../images/people.png);
+    background-image: url(../images/people.svg);
     background-repeat: no-repeat;
     background-position: left;
 }

@@ -12,7 +12,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
-# admin.site.register(Customer)
+admin.site.register(SizeProduct)
 admin.site.register(Specifications)
 admin.site.register(Services)
 admin.site.register(PhotoAlbum)

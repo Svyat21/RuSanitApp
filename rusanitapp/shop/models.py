@@ -47,6 +47,10 @@ class SizeProduct(models.Model):
     size = models.CharField(max_length=255, verbose_name='Размер')
     product = models.ForeignKey('Product', blank=True, null=True, on_delete=models.SET_NULL, verbose_name='Станция')
 
+    class Meta:
+        verbose_name = 'Размеры станции'
+        verbose_name_plural = 'Размеры станции'
+
 
 # class Customer(models.Model):
 #     recipient = models.CharField(max_length=255, verbose_name='Получатель')
