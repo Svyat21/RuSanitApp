@@ -33,10 +33,10 @@ class Product(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='url')
 
     def __str__(self):
-        return f'{self.pk}. {self.name}'
+        return f'{self.name}'
 
     def get_absolute_url(self):
-        return reverse('product', kwargs={'prod_slug': self.slug})
+        return reverse('show_product', kwargs={'prod_slug': self.slug})
 
     class Meta:
         verbose_name = 'Станция'
