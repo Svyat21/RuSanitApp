@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title_html }}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'shop/css/jquery.formstyler.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'shop/css/jq-formstyle.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'shop/css/main.css' %}">
+</head>
+<body>
+    <header class="main-container flex flex-center">
+        <nav class="contain flex flex-space-between">
+            <div class="logo left-nav">
+                <p class="font-logo">RuSanit</p>
+            </div>
+            <div class="main-menu flex flex-space-between">
+                <a class="font-nav" href="{% url 'home' %}">Главная</a>
+                <a class="font-nav" href="#">Доставка</a>
+                <a class="font-nav" href="#">Контакты</a>
+                <div><a class="font-nav" href="#">Корзина</a></div>
+            </div>
+            <div class="call right-nav">
+                <div>
+                    <p class="font-button">Заказать звонок</p>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="flex flex-center">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% include 'shop/_footer.html' %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'shop/js/jquery.formstyler.min.js' %}"></script>
+    <script src="{% static 'shop/js/script.js' %}"></script>
+    <script>
+        (function($) {
+        $(function() {
+	        $('select').styler();
+        });
+        })(jQuery);
+    </script>
+</body>
+</html>

@@ -1,11 +1,54 @@
-{% extends 'shop/base.html' %}
+{% extends 'shop/base_second.html' %}
 
 {% block content %}
-    <!-- <form action="{% url 'product' %}" method="POST">
-        {% csrf_token %}
-        {% for f in form %}
-            <p><label for="{{ f.id_for_lable }}">{{ f.lable }}: </label>{{ f }}</p>
-            <p>{{ f.errors }}</p>
-        {% endfor %}
-    </form> -->
+    <div class="container1180">
+        <h1 class="h1-style mt50">{{ prod.name }}</h1>
+        <div class="description">
+            <div class="photo">
+                <div class="small img-sm">
+                    {% for album in albums %}
+                        <a href="{{ album.photo.url }}">
+                        <img src="{{ album.photo.url }}">
+                        </a>
+                    {% endfor %}
+                </div>
+                <div class="big img-big">
+                    <img src="{{ photo_one.photo.url }}">
+                </div>
+            </div>
+            <div class="content-select">
+                <h1 class="h1-style">93900 руб.</h1>
+                <form class="form" action="{{ prod.get_absolute_url }}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-lable">
+                        <p><label for="{{ form.size.id_for_label }}">{{ form.size.label }}:</label></p>
+                        {{ form.size }}
+                    </div>
+                    <div class="form-lable div-r">
+                        <p><label for="{{ form.montage.id_for_label }}">{{ form.montage.label }}:</label></p>
+                        {{ form.montage }}
+                    </div>
+                    <div class="form-lable">
+                        <p><label for="{{ form.elongated_neck.id_for_label }}">{{ form.elongated_neck.label }}:</label></p>
+                        {{ form.elongated_neck }}
+                    </div>
+                    <div class="form-lable div-r">
+                        <p><label for="{{ form.mounting_neck.id_for_label }}">{{ form.mounting_neck.label }}:</label></p>
+                        {{ form.mounting_neck }}
+                    </div>
+                    <div class="form-lable">
+                        <p><label for="{{ form.water_disposal.id_for_label }}">{{ form.water_disposal.label }}:</label></p>
+                        {{ form.water_disposal }}
+                    </div>
+                    <div class="form-lable div-r">
+                        <p><label for="{{ form.additional_options.id_for_label }}">{{ form.additional_options.label }}:</label></p>
+                        {{ form.additional_options }}
+                    </div>
+                    <div></div>
+                    <button class="submit" type="submit">В корзину</button>
+                </form>
+            </div>
+        </div>
+        <div class="text">{{ prod.full_description|linebreaks }}</div>
+    </div>
 {% endblock %}
