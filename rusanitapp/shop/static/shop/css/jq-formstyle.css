@@ -45,3 +45,15 @@
 .selected{
     background-color: #FD9800;
 }
+.jq-number__field input{
+    background-color: #F8F8F8;
+    width: 13px;
+    height: 27px;
+    border: none;
+    font: Roboto;
+    font-size: 23px;
+    margin-top: 8px;
+}
+.jq-number.focused{
+    border: none;
+}

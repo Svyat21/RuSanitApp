@@ -35,10 +35,11 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="{% static 'shop/js/jquery.formstyler.min.js' %}"></script>
     <script src="{% static 'shop/js/script.js' %}"></script>
+    <script src="{% static 'shop/js/my_script.js' %}"></script>
     <script>
         (function($) {
         $(function() {
-	        $('select').styler();
+	        $('select, input').styler();
         });
         })(jQuery);
     </script>

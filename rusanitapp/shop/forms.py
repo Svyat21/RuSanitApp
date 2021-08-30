@@ -40,3 +40,4 @@ class ServicesForm(forms.Form):
     mounting_neck = forms.ChoiceField(choices=neck_installation, label='Монтаж горловины')
     water_disposal = forms.ChoiceField(choices=water_dispos, label='Водоотведение')
     additional_options = forms.ChoiceField(choices=options_additional, label='Дополнительные опции')
+    count = forms.IntegerField(label='Количество')

@@ -44,9 +44,50 @@
                         <p><label for="{{ form.additional_options.id_for_label }}">{{ form.additional_options.label }}:</label></p>
                         {{ form.additional_options }}
                     </div>
-                    <div></div>
+                    <div>
+                        <div class="count">
+                            <label for="{{ form.count.id_for_label }}"></label>
+                            <div onclick="valueMinus()" class="round-button minus flex flex-center align-items-center">
+                                <div></div>
+                            </div>
+                            {{ form.count }}
+                            <div onclick="valuePlus()" class="round-button plus flex flex-center align-items-center">
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
                     <button class="submit" type="submit">В корзину</button>
                 </form>
+            </div>
+        </div>
+        <div class="switch flex">
+            <p onclick="description()" class="buttom-description p-style">Описание</p>
+            <p onclick="specifications()" class="buttom-specifications p-style">Характеристики</p>
+        </div>
+        <div class="specifications">
+            <div class="el element-gray flex flex-space-between">
+                <p>Габариты</p>
+                <div><p>{{ specifications.0.dimensions }}</p></div>
+            </div>
+            <div class="el element-white flex flex-space-between">
+                <p>Высота корпуса станции</p>
+                <div><p>{{ specifications.0.station_height }}</p></div>
+            </div>
+            <div class="el element-gray flex flex-space-between">
+                <p>Вес станции</p>
+                <div><p>{{ specifications.0.station_weight }}</p></div>
+            </div>
+            <div class="el element-white flex flex-space-between">
+                <p>Кол-во пользователей</p>
+                <div><p>{{ specifications.0.people_amount }}</p></div>
+            </div>
+            <div class="el element-gray flex flex-space-between">
+                <p>Макс. залповый сброс</p>
+                <div><p>{{ specifications.0.maximum_reset }}</p></div>
+            </div>
+            <div class="el element-white flex flex-space-between">
+                <p>Потребляемая мощность</p>
+                <div><p>{{ specifications.0.power }}</p></div>
             </div>
         </div>
         <div class="text">{{ prod.full_description|linebreaks }}</div>

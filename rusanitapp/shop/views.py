@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
-from shop.models import Product, SizeProduct, PhotoAlbum
+from shop.models import Product, SizeProduct, PhotoAlbum, Specifications
 from shop.forms import ServicesForm
 
 
@@ -39,12 +39,18 @@ class ShowProduct(DetailView):
         obj = PhotoAlbum.objects.filter(product=self.object.pk).first()
         return obj
 
+    def get_specifications(self):
+        obj = Specifications.objects.filter(product=self.object.pk)
+        print(obj)
+        return obj
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_html'] = self.object.name
         context['form'] = self.get_form()
         context['albums'] = self.get_album()
         context['photo_one'] = self.get_album_one()
+        context['specifications'] = self.get_specifications()
         return context
 
 

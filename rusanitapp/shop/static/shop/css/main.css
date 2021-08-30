@@ -72,6 +72,9 @@ body{
 .flex-space-between{
     justify-content: space-between;
 }
+.align-items-center{
+    align-items: center;
+}
 .main-container{
     background-color: white;
     height: 104px;
@@ -220,9 +223,68 @@ body{
 .div-r{
   margin-left: 10px;
 }
+.count{
+    margin-top: 55px;
+    width: 117px;
+    height: 42px;
+    display: flex;
+    justify-content: space-between;
+}
+.round-button{
+    background-color: white;
+    border-radius: 100px;
+    box-shadow: 0px 0px 7.5px rgba(27, 123, 106, 0.1);
+    width: 42px;
+    height: 42px;
+}
+.minus div{
+    background-image: url(../images/minus.svg);
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 3px;
+}
+.plus div{
+    background-image: url(../images/plus.svg);
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 14px;
+}
 /* form-lable */
 .text p{
-    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.switch{
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+.switch p{
+    line-height: 25px;
+}
+.buttom-specifications{
+    margin-left: 20px;
+    color: var(--color-orange);
+}
+.specifications{
+    display: none;
+    /* margin-top: 30px; */
+    margin-bottom: 150px;
+}
+.specifications p{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+}
+.element-gray{
+    background-color: #BABAC2;
+    height: 37px;
+}
+.element-white{
+    background-color: white;
+    height: 37px;
+}
+.el div{
+    width: 280px;
 }
 footer{
     height: 154px;
