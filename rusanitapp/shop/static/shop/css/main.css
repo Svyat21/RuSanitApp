@@ -25,6 +25,7 @@ body{
     font-style: normal;
     font-weight: normal;
     background-color: var(--color-pale-white);
+    min-height: 100%;
 }
 .font-logo{
     font: Montserrat;
@@ -54,6 +55,13 @@ body{
     font-weight: bold;
     font-size: 30px;
     line-height: 41px;
+    color: var(--color-black);
+}
+.h2-style{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 140%;
     color: var(--color-black);
 }
 .p-style{
@@ -140,7 +148,7 @@ body{
 .container1180{
     width: 1180px;
     margin: 0 auto;
-    margin-bottom: 150px;
+    margin-bottom: 200px;
 }
 .mt50{
     margin-top: 50px;
@@ -205,6 +213,7 @@ body{
   line-height: 25px;
   margin-left: 10px;
   margin-top: 50px;
+  cursor: pointer;
 }
 /* form-lable */
 .form{
@@ -236,6 +245,7 @@ body{
     box-shadow: 0px 0px 7.5px rgba(27, 123, 106, 0.1);
     width: 42px;
     height: 42px;
+    cursor: pointer;
 }
 .minus div{
     background-image: url(../images/minus.svg);
@@ -260,9 +270,13 @@ body{
 .switch p{
     line-height: 25px;
 }
+.buttom-description{
+    color: var(--color-orange);
+    cursor: pointer;
+}
 .buttom-specifications{
     margin-left: 20px;
-    color: var(--color-orange);
+    cursor: pointer;
 }
 .specifications{
     display: none;
@@ -335,4 +349,85 @@ footer{
     width: 20px;
     height: 20px;
     background-image: url(../images/insta.svg);
+}
+
+
+/* -------Корзина------- */
+.prod-basket-main{
+    width: 1180px;
+    height: 320px;
+    background-color: white;
+    margin-top: 50px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    transition: box-shadow .2s linear;
+}
+.prod-basket-main:hover{
+    box-shadow: 0px 0px 35px rgba(27, 123, 106, 0.3);
+    border-radius: 10px;
+}    
+.small-contain{
+    width: 1100px;
+    height: 240px;
+}
+.bascet-servise{
+    margin-top: 20px;
+}
+.basket-prod-photo{
+    width: 180px;
+    height: 186px;
+}
+.basket-prod-servise{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.bascet-prod-servise p{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+    color: var(--color-black);
+}
+.bascet-prod-servise b{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 150%;
+    color: var(--color-black);
+}
+.left-prod{
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.delete{
+    background-image: url(../images/exit.svg);
+    width: 30px;
+    height: 30px;
+}
+.full-price{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+}
+.prod-count{
+    font: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 23.0769px;
+    line-height: 27px;
+}
+.button-standart{
+    padding: 10px 16px;
+    background-color: var(--color-orange);
+    color: white;
+    font-size: 14px;
+    line-height: 155%;
+    border-radius: 10px;
+    transition: background-color .2s linear;
+}
+.button-standart:hover{
+    background-color: var(--color-highlighting-orange);
 }

@@ -17,8 +17,10 @@ body{
 }
 .main-container{
     max-width: 100%;
+    height: 720px;
     background-image: url(../images/heder_background.svg);
-    background-repeat: repeat-x;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .contain{
     max-width: 1440px;
@@ -65,7 +67,7 @@ body{
     transition: color .2s linear;
 }
 .main-menu a:hover{
-    color: #B3CC5B;
+    color: #FD9800;
 }
 .call{
     margin-top: 30px;
@@ -73,13 +75,14 @@ body{
     width: 195px;
     background-color: white;
     border-radius: 10px;
+    cursor: pointer;
     transition: background-color .2s linear;
 }
 .right-nav{
     margin-right: 130px;
 }
 .call:hover{
-    background-color: #76D1FF;
+    background-color: #FD9800;
 }
 .call div{
     margin-top: 10px;
@@ -102,11 +105,11 @@ body{
     width: 565px;
 }
 .intro-photo{
-    width: 685px;
-    height: 425px;
+    width: 715px;
+    height: 502px;
     background-image: url(../images/house.png);
     background-repeat: no-repeat;
-    background-position: left;
+    background-size: cover;
 }
 /* @media (max-width:1440px){
     .intro-photo{
@@ -122,20 +125,20 @@ body{
 }
 .intro-p{
     max-width: 556px;
-    margin-top: 25px;
-    margin-bottom: 45px;
+    margin-top: 50px;
+    margin-bottom: 90px;
     font-size: 22px;
     color: white;
 }
 .button{
     color: white;
-    padding: 15px 41px;
-    background-color: #76D1FF;
+    padding: 15px 79px;
+    background-color: #FD9800;
     border-radius: 10px;
     transition: background-color .2s linear;
 }
 .button:hover{
-    background-color: #5AA4C9;
+    background-color: #DD8500;
 }
 .content-conteiner{
     height: 923px;
@@ -145,7 +148,7 @@ body{
     justify-content: center;
 }
 .content{
-    margin-top: 154px;
+    margin-top: 250px;
     max-width: 1180px;
 }
 .card-list{
@@ -175,19 +178,19 @@ body{
 .button-2{
     color: white;
     padding: 10px 19.5px;
-    background-color: #76D1FF;
+    background-color: #FD9800;
     border-radius: 10px;
     transition: background-color .2s linear;
 }
 .button-2:hover{
-    background-color: #5AA4C9;
+    background-color: #DD8500;
 }
 .upper-part{
     display: flex;
     justify-content: space-between;
 }
 .right-side p{
-    color: #B3CC5B;
+    color: #5AA4C9;
     font-size: 14.2438px;
     margin-left: 33px;
     margin-bottom: 7px;

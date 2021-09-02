@@ -1,0 +1,38 @@
+{% extends 'shop/base_second.html' %}
+
+{% block content %}
+    <div class="container1180">
+        <h2 class="h1-style mt50">Корзина</h2>
+        {% for prod in prod_list %}
+            <div class="prod-basket-main flex flex-center align-items-center">
+                <div class="small-contain flex flex-space-between">
+                    <div class="right-prod">
+                        <h2 class="h2-style">{{ prod.0.name }}</h2>
+                        <div class="bascet-servise flex">
+                            <div class="basket-prod-photo img-sm">
+                                <img src="{{ prod.0.main_photo.url }}">
+                            </div>
+                            <div class="basket-prod-servise">
+                                <p>Размер: <b>{{ prod.1.size }}</b></p>
+                                <p>Удлиняющая горловина: <b>{{ prod.1.montage }}</b></p>
+                                <p>Водоотведение: <b>{{ prod.1.elongated_neck }}</b></p>
+                                <p>Монтаж: <b>{{ prod.1.mounting_neck }}</b></p>
+                                <p>position: <b>{{ prod.1.water_disposal }}</b></p>
+                                <p>Дополнительные опции: <b>{{ prod.1.additional_options }}</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="left-prod flex">
+                        <div class="delete"></div>
+                        <h1 class="full-price">{{ prod.0.price }} руб.</h1>
+                        <h1 class="prod-count">{{ prod.1.count }} шт.</h1>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="create-order flex flex-space-between">
+            <a class="button-standart" href="#">Оформить заказ</a>
+            <h2 class="h2-style">Итого: 5 шт. на сумму 853 900 руб.</h2>
+        </div>
+    </div>
+{% endblock %}

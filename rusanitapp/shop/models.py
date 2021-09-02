@@ -30,6 +30,8 @@ class Product(models.Model):
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     tag_product = models.CharField(max_length=255, blank=True, verbose_name='Тег', choices=product_tag)
+    customer = models.ForeignKey('Customer', null=True, blank=True, on_delete=models.SET_NULL,
+                                 verbose_name='Не заполнять это поле')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='url')
 
     def __str__(self):
@@ -52,29 +54,37 @@ class SizeProduct(models.Model):
         verbose_name_plural = 'Размеры станции'
 
 
-# class Customer(models.Model):
-#     recipient = models.CharField(max_length=255, verbose_name='Получатель')
-#     phone_number = models.CharField(max_length=255, verbose_name='Телефон')
-#     email = models.CharField(max_length=255, verbose_name='email')
-#     city = models.CharField(max_length=255, verbose_name='Город')
-#     street = models.CharField(max_length=255, verbose_name='Улица')
-#     house_number = models.CharField(max_length=255, verbose_name='Дом')
-#     flat = models.CharField(max_length=255, verbose_name='Квартира')
-#     comment = models.TextField(blank=True, verbose_name='Комментарий')
-#     payment_method = models.CharField(max_length=255, choices=pay_method, verbose_name='Способ оплаты')
-#     delivery_option = models.CharField(max_length=255, choices=reception_method, verbose_name='Вариант доставки')
-#     product = models.ForeignKey('Product', null=True, blank=True, on_delete=models.SET_NULL)
+class Customer(models.Model):
+    user_ip = models.CharField(max_length=255, verbose_name='ip-адрес')
+    order = models.OneToOneField('Order', null=True, on_delete=models.SET_NULL)
+    date_update = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
+    date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+
+
+class Order(models.Model):
+    recipient = models.CharField(max_length=255, verbose_name='Получатель')
+    phone_number = models.CharField(max_length=255, verbose_name='Телефон')
+    email = models.CharField(max_length=255, verbose_name='email')
+    city = models.CharField(max_length=255, verbose_name='Город')
+    street = models.CharField(max_length=255, verbose_name='Улица')
+    house_number = models.CharField(max_length=255, verbose_name='Дом')
+    flat = models.CharField(max_length=255, verbose_name='Квартира')
+    comment = models.TextField(blank=True, verbose_name='Комментарий')
+    payment_method = models.CharField(max_length=255, choices=pay_method, verbose_name='Способ оплаты')
+    delivery_option = models.CharField(max_length=255, choices=reception_method, verbose_name='Вариант доставки')
+    date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
 
 class Services(models.Model):
     size = models.CharField(max_length=255, default='Не выбрано', verbose_name='Размер')
-    montage = models.BooleanField(default=False, verbose_name='Монтаж')
+    montage = models.CharField(max_length=255, default='Не выбрано', verbose_name='Монтаж')
     elongated_neck = models.CharField(max_length=255, default='Не выбрано', verbose_name='Удлиняющая горловина')
-    mounting_neck = models.BooleanField(default=False, verbose_name='Монтаж горловины')
-    water_disposal = models.BooleanField(default=False, verbose_name='Водоотведение')
+    mounting_neck = models.CharField(max_length=255, default='Не выбрано', verbose_name='Монтаж горловины')
+    water_disposal = models.CharField(max_length=255, default='Не выбрано', verbose_name='Водоотведение')
     additional_options = models.CharField(max_length=255, default='Не выбрано', verbose_name='Дополнительные опции')
     count = models.IntegerField(default=0, verbose_name='Количество в заказе')
     product = models.ForeignKey('Product', blank=True, null=True, on_delete=models.SET_NULL)
+    customer = models.ForeignKey('Customer', blank=True, null=True, on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = 'Услуги'

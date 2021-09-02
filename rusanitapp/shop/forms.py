@@ -2,8 +2,8 @@ from django import forms
 from shop.models import *
 
 installation = [
-    (False, 'Не выбрано'),
-    (True, 'Да'),
+    ('Не выбрано', 'Не выбрано'),
+    ('Да', 'Да'),
 ]
 neck_elongated = [
     ('Не выбрано', 'Не выбрано'),
@@ -15,12 +15,12 @@ neck_elongated = [
     ('700мм', '700мм'),
 ]
 neck_installation = [
-    (False, 'Не выбрано'),
-    (True, 'Да'),
+    ('Не выбрано', 'Не выбрано'),
+    ('Да', 'Да'),
 ]
 water_dispos = [
-    (False, 'Не выбрано'),
-    (True, 'Да'),
+    ('Не выбрано', 'Не выбрано'),
+    ('Да', 'Да'),
 ]
 options_additional = [
     ('Не выбрано', 'Не выбрано'),
