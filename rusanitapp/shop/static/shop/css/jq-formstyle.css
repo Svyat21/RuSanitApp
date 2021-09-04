@@ -42,9 +42,11 @@
 }
 .jq-selectbox__dropdown li:hover{
     background-color: #FD9800;
+    color: white;
 }
 .selected{
     background-color: #FD9800;
+    color: white;
 }
 .jq-number__field input{
     background-color: #F8F8F8;
@@ -57,4 +59,16 @@
 }
 .jq-number.focused{
     border: none;
+}
+.jq-checkbox{
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: #989AA9;
+}
+.jq-checkbox.checked{
+    background-color: #FD9800;
+    background-image: url(../images/check.svg);
+    background-repeat: no-repeat;
+    background-position: center;
 }

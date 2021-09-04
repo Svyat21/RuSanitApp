@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ title_html }}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'shop/css/jquery.formstyler.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'shop/css/jq-formstyle.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'shop/css/style.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'shop/css/universal_styles.css' %}">
 </head>
 <body>
     <div class="main-container">
@@ -20,7 +23,7 @@
                         <a href="#">Контакты</a>
                         <div><a href="#">Корзина</a></div>
                     </div>
-                    <div class="call right-nav">
+                    <div href="#popup" class="call right-nav popup-link">
                         <div>
                             <p>Заказать звонок</p>
                         </div>
@@ -54,6 +57,46 @@
             </div>
         </div>
     </div>
+    <div id="popup" class="popup">
+        <div class="popup-body">
+            <div class="popup-content">
+                <div class="popup-contain">
+                    <div class="popup-close close-popup"></div>
+                    <h1 class="h2-style mt50">Обратная связь</h1>
+                    <p class="mt20">
+                        Оставьте Ваши данные и мы свяжемся с вами
+                    </p>
+                    <form class="form-call" action="{% url 'feedback' %}" method="GET">
+                        <label class="mt15" for="">
+                            <input class="input-call" id="name_feedback" type="text" name="name" placeholder="Ваше имя">
+                        </label>
+                        <label class="mt10" for="">
+                            <input class="input-call" id="phone_feedback" type="text" name="phone" placeholder="Телефон">
+                        </label>
+                        <div class="check-lable">
+                            <label for="">
+                                <input type="checkbox" name="checkbox" id="checkbox_feedback" placeholder="Я согласен">
+                            </label>
+                            <a href="#">Я согласен с политикой конфеденциальности</a>
+                        </div>
+                        <button class="submit-popup" type="submit" id="feedback">Перезвонить мне</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     {% include 'shop/_footer.html' %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'shop/js/jquery.formstyler.min.js' %}"></script>
+    <script src="{% static 'shop/js/script.js' %}"></script>
+    <script src="{% static 'shop/js/my_script.js' %}"></script>
+    <script src="{% static 'shop/js/popaps.js' %}"></script>
+    <script>
+        (function($) {
+        $(function() {
+	        $('select, input').styler();
+        });
+        })(jQuery);
+    </script>
 </body>
 </html>

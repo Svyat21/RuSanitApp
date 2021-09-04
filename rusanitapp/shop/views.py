@@ -1,8 +1,33 @@
+from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from shop.models import Product, SizeProduct, PhotoAlbum, Specifications, Services, Customer
 from shop.forms import ServicesForm
+from django.core.mail import send_mail
+
+
+def ordering_feedback(request):
+    if request.GET:
+        print(f'\nGET запрос обработан\n')
+        print(f"\n{request.GET['name']}\n")
+        print(f"\n{request.GET['phone']}\n")
+        mail = send_mail(
+            subject=f"Заказ обратной связи от пользователя {request.GET['name']}",
+            message=f"Заказан звонок от пользователя:\n{request.GET['name']}\nНомер телефона:\n{request.GET['phone']}",
+            from_email='noreply@rs-eco.ru',
+            recipient_list=['contact@rs-eco.ru'],
+            fail_silently=False,
+        )
+        if mail:
+            messages.success(request, 'Заявка отправлена!')
+            return HttpResponse('ok', content_type='text/html')
+        else:
+            messages.error(request, 'Ошибка отправки!')
+            return HttpResponse('ok', content_type='text/html')
+    else:
+        print(f'\nGET запрос не обработан\n')
+        return HttpResponse('no', content_type='text/html')
 
 
 class ShopHome(ListView):

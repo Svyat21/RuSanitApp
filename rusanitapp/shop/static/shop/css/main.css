@@ -91,6 +91,15 @@ body{
 .contain{
     width: 1440px;
 }
+.mt50{
+    margin-top: 50px;
+}
+.mt20{
+    margin-top: 20px;
+}
+.mt10{
+    margin-top: 10px;
+}
 .logo{
     margin-top: 27px;
     height: 44px;
@@ -149,9 +158,6 @@ body{
     width: 1180px;
     margin: 0 auto;
     margin-bottom: 200px;
-}
-.mt50{
-    margin-top: 50px;
 }
 .description{
     margin-top: 30px;
@@ -300,57 +306,6 @@ body{
 .el div{
     width: 280px;
 }
-footer{
-    height: 154px;
-    background-color: var(--color-black);
-}
-.footer-call{
-    margin-top: 20px;
-    background-color: white;
-    border-radius: 10px;
-    width: 219px;
-    height: 114px;
-}
-.mt10{
-    margin-top: 10px;
-}
-.flex-column-ful-center{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.footer-logo{
-    background-image: url(../images/Union.svg);
-    margin-top: 57px;
-}
-.footer-logo p{
-    color: white;
-    margin-right: 47px;
-}
-.footer-center p{
-    color: white;
-}
-.wid165{
-    width: 165px;
-    margin-top: 69px;
-}
-.fb{
-    width: 20px;
-    height: 19.88px;
-    background-image: url(../images/fb.svg);
-}
-.tvit{
-    width: 20px;
-    height: 16.25px;
-    background-image: url(../images/tvit.svg);
-}
-.insta{
-    width: 20px;
-    height: 20px;
-    background-image: url(../images/insta.svg);
-}
-
 
 /* -------Корзина------- */
 .prod-basket-main{
