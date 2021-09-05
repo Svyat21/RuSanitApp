@@ -31,7 +31,7 @@ class Product(models.Model):
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     tag_product = models.CharField(max_length=255, blank=True, verbose_name='Тег', choices=product_tag)
     customer = models.ForeignKey('Customer', null=True, blank=True, on_delete=models.SET_NULL,
-                                 verbose_name='Не заполнять это поле')
+                                 verbose_name='Не заполнять это поле', related_name='products')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='url')
 
     def __str__(self):
@@ -47,16 +47,97 @@ class Product(models.Model):
 
 class SizeProduct(models.Model):
     size = models.CharField(max_length=255, verbose_name='Размер')
-    product = models.ForeignKey('Product', blank=True, null=True, on_delete=models.SET_NULL, verbose_name='Станция')
+    price = models.IntegerField(verbose_name='Цена')
+    product = models.ForeignKey('Product', blank=True, null=True, on_delete=models.SET_NULL, verbose_name='Станция',
+                                related_name='sizes_product')
+
+    def __str__(self):
+        return f'{self.size}: {self.price} руб.'
 
     class Meta:
         verbose_name = 'Размеры станции'
         verbose_name_plural = 'Размеры станции'
 
 
+class Montage(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Название')
+    price = models.IntegerField(verbose_name='Цена')
+
+    def __str__(self):
+        return f'{self.name}: {self.price} руб.'
+
+    class Meta:
+        verbose_name = 'Монтаж'
+        verbose_name_plural = 'Монтаж'
+
+
+class ElongatedNeck(models.Model):
+    size = models.CharField(max_length=255, verbose_name='Размер')
+    price = models.IntegerField(verbose_name='Цена')
+
+    def __str__(self):
+        return f'{self.size}: {self.price} руб.'
+
+    class Meta:
+        verbose_name = 'Удлиняющая горловина'
+        verbose_name_plural = 'Удлиняющая горловина'
+
+
+class MountingNeck(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Название')
+    price = models.IntegerField(verbose_name='Цена')
+
+    def __str__(self):
+        return f'{self.name}: {self.price} руб.'
+
+    class Meta:
+        verbose_name = 'Монтаж горловины'
+        verbose_name_plural = 'Монтаж горловины'
+
+
+class WaterDisposal(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Название')
+    price = models.IntegerField(verbose_name='Цена')
+
+    def __str__(self):
+        return f'{self.name}: {self.price} руб.'
+
+    class Meta:
+        verbose_name = 'Водоотведение'
+        verbose_name_plural = 'Водоотведение'
+
+
+class AdditionalOptions(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Название')
+    price = models.IntegerField(verbose_name='Цена')
+
+    def __str__(self):
+        return f'{self.name}: {self.price} руб.'
+
+    class Meta:
+        verbose_name = 'Дополнительные опции'
+        verbose_name_plural = 'Дополнительные опции'
+
+
+class Services(models.Model):
+    size = models.ForeignKey('SizeProduct', blank=True, null=True, on_delete=models.SET_NULL)
+    montage = models.ForeignKey('Montage', blank=True, null=True, on_delete=models.SET_NULL)
+    elongated_neck = models.ForeignKey('ElongatedNeck', blank=True, null=True, on_delete=models.SET_NULL)
+    mounting_neck = models.ForeignKey('MountingNeck', blank=True, null=True, on_delete=models.SET_NULL)
+    water_disposal = models.ForeignKey('WaterDisposal', blank=True, null=True, on_delete=models.SET_NULL)
+    additional_options = models.ForeignKey('AdditionalOptions', blank=True, null=True, on_delete=models.SET_NULL)
+    count = models.IntegerField(default=1, verbose_name='Количество в заказе')
+    product = models.ForeignKey('Product', blank=True, null=True, on_delete=models.SET_NULL, related_name='services')
+    customer = models.ForeignKey('Customer', blank=True, null=True, on_delete=models.SET_NULL, related_name='services')
+
+    class Meta:
+        verbose_name = 'Услуги'
+        verbose_name_plural = 'Услуги'
+
+
 class Customer(models.Model):
     user_ip = models.CharField(max_length=255, verbose_name='ip-адрес')
-    order = models.OneToOneField('Order', null=True, on_delete=models.SET_NULL)
+    order = models.OneToOneField('Order', null=True, on_delete=models.SET_NULL, related_name='customer')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
@@ -73,22 +154,6 @@ class Order(models.Model):
     payment_method = models.CharField(max_length=255, choices=pay_method, verbose_name='Способ оплаты')
     delivery_option = models.CharField(max_length=255, choices=reception_method, verbose_name='Вариант доставки')
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-
-
-class Services(models.Model):
-    size = models.CharField(max_length=255, default='Не выбрано', verbose_name='Размер')
-    montage = models.CharField(max_length=255, default='Не выбрано', verbose_name='Монтаж')
-    elongated_neck = models.CharField(max_length=255, default='Не выбрано', verbose_name='Удлиняющая горловина')
-    mounting_neck = models.CharField(max_length=255, default='Не выбрано', verbose_name='Монтаж горловины')
-    water_disposal = models.CharField(max_length=255, default='Не выбрано', verbose_name='Водоотведение')
-    additional_options = models.CharField(max_length=255, default='Не выбрано', verbose_name='Дополнительные опции')
-    count = models.IntegerField(default=0, verbose_name='Количество в заказе')
-    product = models.ForeignKey('Product', blank=True, null=True, on_delete=models.SET_NULL)
-    customer = models.ForeignKey('Customer', blank=True, null=True, on_delete=models.SET_NULL)
-
-    class Meta:
-        verbose_name = 'Услуги'
-        verbose_name_plural = 'Услуги'
 
 
 class Specifications(models.Model):

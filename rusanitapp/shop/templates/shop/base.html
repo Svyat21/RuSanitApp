@@ -17,11 +17,13 @@
                     <div class="logo left-nav">
                         <p>RuSanit</p>
                     </div>
-                    <div class="main-menu">
+                    <div class="{% if user %}basket-full{% endif %} main-menu">
                         <a href="{% url 'home' %}">Главная</a>
                         <a href="#">Доставка</a>
                         <a href="#">Контакты</a>
-                        <div><a href="#">Корзина</a></div>
+                        <div>
+                            <a href="{% url 'basket' %}">Корзина</a>
+                        </div>
                     </div>
                     <div href="#popup" class="call right-nav popup-link">
                         <div>

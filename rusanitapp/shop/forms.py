@@ -1,43 +1,23 @@
 from django import forms
 from shop.models import *
 
-installation = [
-    ('Не выбрано', 'Не выбрано'),
-    ('Да', 'Да'),
-]
-neck_elongated = [
-    ('Не выбрано', 'Не выбрано'),
-    ('200мм', '200мм'),
-    ('300мм', '300мм'),
-    ('400мм', '400мм'),
-    ('500мм', '500мм'),
-    ('600мм', '600мм'),
-    ('700мм', '700мм'),
-]
-neck_installation = [
-    ('Не выбрано', 'Не выбрано'),
-    ('Да', 'Да'),
-]
-water_dispos = [
-    ('Не выбрано', 'Не выбрано'),
-    ('Да', 'Да'),
-]
-options_additional = [
-    ('Не выбрано', 'Не выбрано'),
-    ('Аварийная сигнализация', 'Аварийная сигнализация'),
-    ('Компрессор HIBLOW', 'Компрессор HIBLOW'),
-    ('Компрессор HIBLOW + сигнализация', 'Компрессор HIBLOW + сигнализация'),
-]
+q_montage = Montage.objects.all()
+q_elongated_neck = ElongatedNeck.objects.all()
+q_mounting_neck = MountingNeck.objects.all()
+q_water_disposal = WaterDisposal.objects.all()
+q_additional_options = AdditionalOptions.objects.all()
 
 
 class ServicesForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.sizes = kwargs.pop('sizes')
         super(ServicesForm, self).__init__(*args, **kwargs)
-        self.fields['size'] = forms.ChoiceField(choices=self.sizes, label='Размер', required=False)
-    montage = forms.ChoiceField(choices=installation, label='Монтаж')
-    elongated_neck = forms.ChoiceField(choices=neck_elongated, label='Удлиняющая горловина')
-    mounting_neck = forms.ChoiceField(choices=neck_installation, label='Монтаж горловины')
-    water_disposal = forms.ChoiceField(choices=water_dispos, label='Водоотведение')
-    additional_options = forms.ChoiceField(choices=options_additional, label='Дополнительные опции')
+        self.fields['size'] = forms.ModelChoiceField(queryset=self.sizes, empty_label='Не выбрано', label='Размер')
+    montage = forms.ModelChoiceField(queryset=q_montage, empty_label='Не выбрано', label='Монтаж')
+    elongated_neck = forms.ModelChoiceField(queryset=q_elongated_neck, empty_label='Не выбрано',
+                                            label='Удлиняющая горловина')
+    mounting_neck = forms.ModelChoiceField(queryset=q_mounting_neck, empty_label='Не выбрано', label='Монтаж горловины')
+    water_disposal = forms.ModelChoiceField(queryset=q_water_disposal, empty_label='Не выбрано', label='Водоотведение')
+    additional_options = forms.ModelChoiceField(queryset=q_additional_options, empty_label='Не выбрано',
+                                                label='Дополнительные опции')
     count = forms.IntegerField(label='Количество')

@@ -127,3 +127,10 @@ MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'noreply@rs-eco.ru'
+EMAIL_HOST_PASSWORD = 'Serverrusanit'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True

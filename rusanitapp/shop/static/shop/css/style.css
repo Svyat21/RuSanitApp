@@ -60,6 +60,10 @@ body{
     background-repeat: no-repeat;
     background-position: right;
 }
+.basket-full div{
+    height: 25px;
+    background-image: url(../images/full_shopping_cart.svg);
+}
 .main-menu a{
     margin-top: 40px;
     color: white;

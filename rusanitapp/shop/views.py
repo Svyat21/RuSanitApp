@@ -9,22 +9,22 @@ from django.core.mail import send_mail
 
 def ordering_feedback(request):
     if request.GET:
-        print(f'\nGET запрос обработан\n')
-        print(f"\n{request.GET['name']}\n")
-        print(f"\n{request.GET['phone']}\n")
-        mail = send_mail(
-            subject=f"Заказ обратной связи от пользователя {request.GET['name']}",
-            message=f"Заказан звонок от пользователя:\n{request.GET['name']}\nНомер телефона:\n{request.GET['phone']}",
-            from_email='noreply@rs-eco.ru',
-            recipient_list=['contact@rs-eco.ru'],
-            fail_silently=False,
-        )
-        if mail:
-            messages.success(request, 'Заявка отправлена!')
-            return HttpResponse('ok', content_type='text/html')
-        else:
+        if request.GET['name'] and request.GET['phone']:
+            mail = send_mail(
+                subject=f"Заказ обратной связи от пользователя {request.GET['name']}",
+                message=f"Заказан звонок от пользователя:\n{request.GET['name']}\n"
+                        f"Номер телефона:\n{request.GET['phone']}",
+                from_email='noreply@rs-eco.ru',
+                recipient_list=['contact@rs-eco.ru'],
+                fail_silently=False,
+            )
+            if mail:
+                messages.success(request, 'Заявка отправлена!')
+                return HttpResponse('ok', content_type='text/html')
             messages.error(request, 'Ошибка отправки!')
-            return HttpResponse('ok', content_type='text/html')
+            return HttpResponse('no', content_type='text/html')
+        messages.error(request, 'не все поля заполнены!')
+        return HttpResponse('no', content_type='text/html')
     else:
         print(f'\nGET запрос не обработан\n')
         return HttpResponse('no', content_type='text/html')
@@ -38,10 +38,18 @@ class ShopHome(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_html'] = 'Главная страница'
+        context['user'] = self.get_user()
         return context
 
     def get_queryset(self):
         return Product.objects.filter(is_published=True)
+
+    def get_user(self):
+        ip = self.request.META.get('REMOTE_ADDR')
+        user = Customer.objects.filter(user_ip=ip)
+        if user:
+            return user[0]
+        return None
 
 
 class Basket(ListView):
@@ -84,9 +92,7 @@ class ShowProduct(DetailView):
     context_object_name = 'prod'
 
     def get_sizes(self):
-        obj = SizeProduct.objects.filter(product=self.object.pk)
-        sizes = [(i.size, i.size) for i in obj]
-        return sizes
+        return SizeProduct.objects.filter(product=self.object.pk)
 
     def get_album(self):
         obj = PhotoAlbum.objects.filter(product=self.object.pk)
@@ -103,8 +109,8 @@ class ShowProduct(DetailView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_html'] = self.object.name
-        sizes = self.get_sizes()
-        context['form'] = ServicesForm(sizes=sizes)
+        # sizes = self.get_sizes()
+        context['form'] = ServicesForm(sizes=self.get_sizes())
         context['albums'] = self.get_album()
         context['photo_one'] = self.get_album_one()
         context['specifications'] = self.get_specifications()
@@ -119,34 +125,35 @@ class ShowProduct(DetailView):
             return Customer.objects.create(user_ip=ip)
 
     def get_services(self, prod, user):
-        service = Services.objects.filter(
-            product=prod
-        ).filter(customer=user)
+        service = Services.objects.filter(product=prod).filter(customer=user)
         if service:
             return service[0]
-        else:
-            return Services()
+        return Services()
 
     def post(self, request, **kwargs):
         user = self.get_user(request)
         product = Product.objects.get(slug=kwargs['prod_slug'])
         service = self.get_services(product, user)
+
         # sizes = self.get_sizes()
         # form = ServicesForm(request.POST, sizes=sizes)
         # if form.is_valid():
-        service.size = request.POST['size']
-        service.montage = request.POST['montage']
-        service.elongated_neck = request.POST['elongated_neck']
-        service.mounting_neck = request.POST['mounting_neck']
-        service.water_disposal = request.POST['water_disposal']
-        service.additional_options = request.POST['additional_options']
-        service.count = request.POST['count']
-        service.product = product
-        service.customer = user
-        service.save()
-        product.customer = user
-        product.save()
-        return redirect('basket')
+
+        print(f'\n{request.POST}\n')
+
+        # service.size = request.POST['size']
+        # service.montage = request.POST['montage']
+        # service.elongated_neck = request.POST['elongated_neck']
+        # service.mounting_neck = request.POST['mounting_neck']
+        # service.water_disposal = request.POST['water_disposal']
+        # service.additional_options = request.POST['additional_options']
+        # service.count = request.POST['count']
+        # service.product = product
+        # service.customer = user
+        # service.save()
+        # product.customer = user
+        # product.save()
+        return #redirect('basket')
 
 
 # class AddCart(View):
