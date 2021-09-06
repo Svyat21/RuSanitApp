@@ -13,6 +13,11 @@ class ProductAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(SizeProduct)
+admin.site.register(Montage)
+admin.site.register(MountingNeck)
+admin.site.register(WaterDisposal)
+admin.site.register(ElongatedNeck)
+admin.site.register(AdditionalOptions)
 admin.site.register(Specifications)
 admin.site.register(Services)
 admin.site.register(PhotoAlbum)

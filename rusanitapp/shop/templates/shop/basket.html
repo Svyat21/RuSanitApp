@@ -7,7 +7,9 @@
             <div class="prod-basket-main flex flex-center align-items-center">
                 <div class="small-contain flex flex-space-between">
                     <div class="right-prod">
-                        <h2 class="h2-style">{{ prod.0.name }}</h2>
+                        <a href="{{ prod.0.get_absolute_url }}">
+                            <h2 class="h2-style">{{ prod.0.name }}</h2>
+                        </a>
                         <div class="bascet-servise flex">
                             <div class="basket-prod-photo img-sm">
                                 <img src="{{ prod.0.main_photo.url }}">
@@ -17,22 +19,22 @@
                                 <p>Удлиняющая горловина: <b>{{ prod.1.montage }}</b></p>
                                 <p>Водоотведение: <b>{{ prod.1.elongated_neck }}</b></p>
                                 <p>Монтаж: <b>{{ prod.1.mounting_neck }}</b></p>
-                                <p>position: <b>{{ prod.1.water_disposal }}</b></p>
+                                <p>Монтаж горловины: <b>{{ prod.1.water_disposal }}</b></p>
                                 <p>Дополнительные опции: <b>{{ prod.1.additional_options }}</b></p>
                             </div>
                         </div>
                     </div>
                     <div class="left-prod flex">
-                        <div class="delete"></div>
-                        <h1 class="full-price">{{ prod.0.price }} руб.</h1>
+                        <a href="{{ prod.1.get_absolute_url }}"><div class="delete"></div></a>
+                        <h1 class="full-price">{{ prod.2 }} руб.</h1>
                         <h1 class="prod-count">{{ prod.1.count }} шт.</h1>
                     </div>
                 </div>
             </div>
         {% endfor %}
         <div class="create-order flex flex-space-between">
-            <a class="button-standart" href="#">Оформить заказ</a>
-            <h2 class="h2-style">Итого: 5 шт. на сумму 853 900 руб.</h2>
+            <a class="button-standart" href="{% url 'order' %}">Оформить заказ</a>
+            <h2 class="h2-style">Итого: {{ full_price }} руб.</h2>
         </div>
     </div>
 {% endblock %}

@@ -23,7 +23,7 @@ body{
     background-size: cover;
 }
 .contain{
-    max-width: 1440px;
+    width: 1440px;
     margin: 0 auto;
 }
 .nav{
@@ -144,8 +144,18 @@ body{
 .button:hover{
     background-color: #DD8500;
 }
+.button3{
+    color: white;
+    padding: 15px 21px;
+    background-color: #84C558;
+    border-radius: 10px;
+    transition: background-color .2s linear;
+}
+.button3:hover{
+    background-color: #6BA842;
+}
 .content-conteiner{
-    height: 923px;
+    background-image: url(../images/main_bacground.svg);
 }
 .content-center{
     display: flex;
@@ -154,6 +164,7 @@ body{
 .content{
     margin-top: 250px;
     max-width: 1180px;
+    margin: 0 auto;
 }
 .card-list{
     margin-top: 50px;
@@ -201,10 +212,31 @@ body{
 }
 .right-side{
     height: 23px;
-    width: 43px;
     background-image: url(../images/people.svg);
     background-repeat: no-repeat;
     background-position: left;
+}
+.hit-of-sales{
+    font: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11.5408px;
+    line-height: 14px;
+    padding: 5px 10px;
+    background-color: #5F64E8;
+    color: white;
+    border-radius: 10px;
+}
+.new-product{
+    font: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11.5408px;
+    line-height: 14px;
+    padding: 5px 10px;
+    background-color: #F36A5F;
+    color: white;
+    border-radius: 10px;
 }
 .card-photo{
     margin: 10px auto;
@@ -241,4 +273,33 @@ body{
     font-weight: bold;
     font-size: 50px;
     line-height: 120%;
+}
+.advantages{
+    width: 580px;
+    height: 427px;
+    background-image: url(../images/advantages.jpg);
+}
+.about{
+    width: 580px;
+    height: 427px;
+    background-image: url(../images/about.jpg);
+}
+.delivery{
+    width: 580px;
+    height: 427px;
+    background-image: url(../images/truck.jpg);
+}
+.contacts{
+    width: 1180px;
+    height: 359px;
+    background-image: url(../images/map.jpg);
+    margin-bottom: 400px;
+}
+.p-index{
+    width: 580px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 150%;
+    color: var(--color-black);
 }

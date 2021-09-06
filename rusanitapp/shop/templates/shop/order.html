@@ -1,0 +1,61 @@
+{% extends 'shop/base_second.html' %}
+
+{% block content %}
+    <div class="container1180">
+        <h2 class="h1-style mt50">Оформление заказа</h2>
+        <p class="mt30 p-style mb10">Заполните контактную информацию</p>
+        <form class="flex flex-space-between" action="{% url 'order' %}" method="POST">
+            {% csrf_token %}
+            <div class="order-form-left">
+                <div class="parent-input">
+                    <p><label for="{{ form.recipient.id_for_label }}"></label></p>
+                    {{ form.recipient }}
+                </div>
+                <div class="parent-input">
+                    <p><label for="{{ form.phone_number.id_for_label }}"></label></p>
+                    {{ form.phone_number }}
+                </div>
+                <div class="parent-input">
+                    <p><label for="{{ form.email.id_for_label }}"></label></p>
+                    {{ form.email }}
+                </div>
+                <div class="parent-input">
+                    <p><label for="{{ form.city.id_for_label }}"></label></p>
+                    {{ form.city }}
+                </div>
+                <div class="parent-input">
+                    <p><label for="{{ form.street.id_for_label }}"></label></p>
+                    {{ form.street }}
+                </div>
+                <div class="parent-input flex flex-space-between">
+                    <div class="addres-form">
+                        <p><label for="{{ form.house_number.id_for_label }}"></label></p>
+                        {{ form.house_number }}
+                    </div>
+                    <div class="addres-form">
+                        <p><label for="{{ form.flat.id_for_label }}"></label></p>
+                        {{ form.flat }}
+                    </div>
+                </div>
+                <div class="parent-input">
+                    <p><label for="{{ form.comment.id_for_label }}"></label></p>
+                    {{ form.comment }}
+                </div>
+                <div class="mt40">
+                    <a class="buttom-standart" href="{% url 'basket' %}">Назад</a>
+                    <button class="buttom-order ml20" type="submit">Оформить заказ</button>
+                </div>
+            </div>
+            <div class="order-form-right">
+                <div >
+                    <p><label for="{{ form.payment_method.id_for_label }}">{{ form.payment_method.label }}:</label></p>
+                    {{ form.payment_method }}
+                </div>
+                <div class="mt20">
+                    <p><label for="{{ form.delivery_option.id_for_label }}">{{ form.delivery_option.label }}:</label></p>
+                    {{ form.delivery_option }}
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

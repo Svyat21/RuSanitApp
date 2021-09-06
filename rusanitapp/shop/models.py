@@ -3,8 +3,8 @@ from django.urls import reverse
 
 
 product_tag = [
-    ('Хит продаж', 'Хит продаж'),
-    ('Новинка', 'Новинка'),
+    ('hit-of-sales', 'Хит продаж'),
+    ('new-product', 'Новинка'),
 ]
 
 pay_method = [
@@ -129,6 +129,9 @@ class Services(models.Model):
     count = models.IntegerField(default=1, verbose_name='Количество в заказе')
     product = models.ForeignKey('Product', blank=True, null=True, on_delete=models.SET_NULL, related_name='services')
     customer = models.ForeignKey('Customer', blank=True, null=True, on_delete=models.SET_NULL, related_name='services')
+
+    def get_absolute_url(self):
+        return reverse('basket_remove', kwargs={'service_pk': self.pk})
 
     class Meta:
         verbose_name = 'Услуги'

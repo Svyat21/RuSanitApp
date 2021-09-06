@@ -5,7 +5,13 @@
         <div class="card">
             <div class="card-contain">
                 <div class="upper-part">
-                    <p class="left-side"></p>
+                    {% if product.tag_product == 'hit-of-sales' %}
+                        <p class="left-side {{ product.tag_product }}">Хит продаж</p>
+                    {% elif product.tag_product == 'new-product' %}
+                        <p class="left-side {{ product.tag_product }}">Новинка</p>
+                    {% else %}
+                        <p class="left-side"></p>
+                    {% endif %}
                     <div class="right-side">
                         <p>{{ product.specifications.people_amount }}</p>
                     </div>

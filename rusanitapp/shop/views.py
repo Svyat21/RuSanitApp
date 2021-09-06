@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from shop.models import Product, SizeProduct, PhotoAlbum, Specifications, Services, Customer
-from shop.forms import ServicesForm
+from shop.forms import ServicesForm, MakingOrderForm
 from django.core.mail import send_mail
 
 
@@ -28,6 +28,98 @@ def ordering_feedback(request):
     else:
         print(f'\nGET запрос не обработан\n')
         return HttpResponse('no', content_type='text/html')
+
+
+def remove_obj_basket(request, service_pk):
+    obj = get_object_or_404(Services, pk=service_pk)
+    obj.delete()
+    return redirect('basket')
+
+
+class MakingOrder(View):
+    def get_user(self):
+        ip = self.request.META.get('REMOTE_ADDR')
+        user = Customer.objects.filter(user_ip=ip)
+        if user:
+            return user[0]
+        else:
+            return Customer.objects.create(user_ip=ip)
+
+    def get_queryset(self):
+        user = self.get_user()
+        prod = Product.objects.filter(customer=user.pk)
+        return prod
+
+    def get_obj_price(self, obj):
+        if obj.count == 0:
+            return 0
+        price = (obj.size.price + obj.montage.price + obj.elongated_neck.price +
+                 obj.mounting_neck.price + obj.water_disposal.price +
+                 obj.additional_options.price) * obj.count
+        return price
+
+    def get_services(self):
+        user = self.get_user()
+        object_list = self.get_queryset()
+        full_price = 0
+        q_set = []
+        for obj in object_list:
+            serv = Services.objects.filter(product=obj).filter(customer=user)
+            if not serv:
+                continue
+            obj_price = self.get_obj_price(serv[0])
+            full_price += obj_price
+            q_set.append((obj, serv[0], obj_price))
+        return q_set, full_price
+
+    def send_mail_with_order(self, order):
+        order_prod, ful_price = self.get_services()
+        order_list = []
+        order_data = ''
+        for object in order_prod:
+            prod = f"{object[0].name}\n" \
+                   f"{object[1].count} шт. - {object[2]} руб.\n" \
+                   f"Размер: {object[1].size}\n" \
+                   f"Монтаж: {object[1].montage}\n" \
+                   f"Удлиняющая горловина: {object[1].elongated_neck}\n" \
+                   f"Монтаж горловины: {object[1].mounting_neck}\n" \
+                   f"Водоотведение: {object[1].water_disposal}\n" \
+                   f"Дополнительные опции: {object[1].additional_options}\n\n"
+            order_list.append(prod)
+        for i in order_list:
+            order_data += i
+        content_mail = f"Заявка на заказ от клиента:\n" \
+                       f"Получатель: {order['recipient']}\n" \
+                       f"Телефон: {order['phone_number']}\n" \
+                       f"Email: {order['email']}\n" \
+                       f"Город: {order['city']}. Улица: {order['street']}\n" \
+                       f"Дом: {order['house_number']}. Квартира: {order['flat']}\n" \
+                       f"Комментарий: {order['comment']}.\n" \
+                       f"Оплата: {order['payment_method']}. Тип доставки: {order['delivery_option']}\n\n" \
+                       f"Заказ на сумму - {ful_price} руб.:\n" + order_data
+        mail = send_mail(
+            subject=f"Заявка на заказ",
+            message=content_mail,
+            from_email='noreply@rs-eco.ru',
+            recipient_list=['contact@rs-eco.ru'],
+            fail_silently=False,
+        )
+        return mail
+
+    def get(self, request):
+        form = MakingOrderForm()
+        context = {
+            'title_html': 'Оформление заказа',
+            'form': form,
+        }
+        return render(request, 'shop/order.html', context=context)
+
+    def post(self, request):
+        form = MakingOrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            self.send_mail_with_order(form.cleaned_data)
+        return redirect('home')
 
 
 class ShopHome(ListView):
@@ -60,7 +152,8 @@ class Basket(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_html'] = 'Корзина'
-        context['prod_list'] = self.get_services()
+        context['prod_list'] = self.get_services()[0]
+        context['full_price'] = self.get_services()[1]
         return context
 
     def get_user(self):
@@ -76,13 +169,26 @@ class Basket(ListView):
         prod = Product.objects.filter(customer=user.pk)
         return prod
 
+    def get_obj_price(self, obj):
+        if obj.count == 0:
+            return 0
+        price = (obj.size.price + obj.montage.price + obj.elongated_neck.price +
+                 obj.mounting_neck.price + obj.water_disposal.price +
+                 obj.additional_options.price) * obj.count
+        return price
+
     def get_services(self):
         user = self.get_user()
+        full_price = 0
         q_set = []
         for obj in self.object_list:
             serv = Services.objects.filter(product=obj).filter(customer=user)
-            q_set.append((obj, serv[0]))
-        return q_set
+            if not serv:
+                continue
+            obj_price = self.get_obj_price(serv[0])
+            full_price += obj_price
+            q_set.append((obj, serv[0], obj_price))
+        return q_set, full_price
 
 
 class ShowProduct(DetailView):
@@ -92,7 +198,8 @@ class ShowProduct(DetailView):
     context_object_name = 'prod'
 
     def get_sizes(self):
-        return SizeProduct.objects.filter(product=self.object.pk)
+        obj = self.get_object()
+        return SizeProduct.objects.filter(product=obj.pk)
 
     def get_album(self):
         obj = PhotoAlbum.objects.filter(product=self.object.pk)
@@ -135,25 +242,23 @@ class ShowProduct(DetailView):
         product = Product.objects.get(slug=kwargs['prod_slug'])
         service = self.get_services(product, user)
 
-        # sizes = self.get_sizes()
-        # form = ServicesForm(request.POST, sizes=sizes)
-        # if form.is_valid():
-
-        print(f'\n{request.POST}\n')
-
-        # service.size = request.POST['size']
-        # service.montage = request.POST['montage']
-        # service.elongated_neck = request.POST['elongated_neck']
-        # service.mounting_neck = request.POST['mounting_neck']
-        # service.water_disposal = request.POST['water_disposal']
-        # service.additional_options = request.POST['additional_options']
-        # service.count = request.POST['count']
-        # service.product = product
-        # service.customer = user
-        # service.save()
-        # product.customer = user
-        # product.save()
-        return #redirect('basket')
+        sizes = self.get_sizes()
+        form = ServicesForm(request.POST, sizes=sizes)
+        if form.is_valid():
+            print(f'\n{form.cleaned_data}\n')
+            service.size = form.cleaned_data['size']
+            service.montage = form.cleaned_data['montage']
+            service.elongated_neck = form.cleaned_data['elongated_neck']
+            service.mounting_neck = form.cleaned_data['mounting_neck']
+            service.water_disposal = form.cleaned_data['water_disposal']
+            service.additional_options = form.cleaned_data['additional_options']
+            service.count = form.cleaned_data['count']
+            service.product = product
+            service.customer = user
+            service.save()
+            product.customer = user
+            product.save()
+        return redirect('basket')
 
 
 # class AddCart(View):

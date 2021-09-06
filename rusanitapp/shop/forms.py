@@ -21,3 +21,25 @@ class ServicesForm(forms.Form):
     additional_options = forms.ModelChoiceField(queryset=q_additional_options, empty_label='Не выбрано',
                                                 label='Дополнительные опции')
     count = forms.IntegerField(label='Количество')
+
+
+class MakingOrderForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['payment_method'].empty_label = 'Не выбрано'
+        self.fields['delivery_option'].empty_label = 'Не выбрано'
+
+    class Meta:
+        model = Order
+        fields = ['recipient', 'phone_number', 'email', 'city', 'street', 'house_number',
+                  'flat', 'comment', 'payment_method', 'delivery_option']
+        widgets = {
+            'recipient': forms.TextInput(attrs={'placeholder': 'Получатель'}),
+            'phone_number': forms.TextInput(attrs={'placeholder': 'Телефон'}),
+            'email': forms.TextInput(attrs={'placeholder': 'email'}),
+            'city': forms.TextInput(attrs={'placeholder': 'Город'}),
+            'street': forms.TextInput(attrs={'placeholder': 'Улица'}),
+            'house_number': forms.TextInput(attrs={'placeholder': 'Дом'}),
+            'flat': forms.TextInput(attrs={'placeholder': 'Квартира'}),
+            'comment': forms.Textarea(attrs={'placeholder': 'Комментарий', 'rows': 3}),
+        }
