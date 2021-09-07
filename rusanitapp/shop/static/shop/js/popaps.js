@@ -97,6 +97,19 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+function allProducts() {
+    $.ajax({
+    type: 'GET',
+    url: '/',
+    data: {
+        'all_products': 'True',
+    },
+    dataType: 'text',
+    cache: false,
+    success: false,
+    });
+}
+
 document.querySelector('#feedback').addEventListener('click', function (e) {
     $.ajax({
     type: 'GET',

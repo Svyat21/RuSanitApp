@@ -19,6 +19,7 @@ a{
     --color-light-grey: #BABAC2;
     --color-gray: #989AA9;
     --color-green: #84C558;
+    --color-green-strong: #6BA842;
 }
 body{
     font-family: Open Sans;
@@ -135,11 +136,12 @@ body{
     width: 195px;
     background-color: var(--color-green);
     border-radius: 10px;
-    /* transition: background-color .2s linear; */
+    cursor: pointer;
+    transition: background-color .2s linear;
 }
-/* .call:hover{
-    background-color: #76D1FF;
-} */
+.call:hover{
+    background-color: var(--color-green-strong);
+}
 .right-nav{
     margin-right: 130px;
 }
@@ -167,7 +169,7 @@ body{
 .photo{
     display: flex;
     justify-content: space-between;
-    width: 580px;
+    width: 572px;
     height: 448px;
 }
 .small{
@@ -309,7 +311,7 @@ body{
 
 /* -------Корзина------- */
 .prod-basket-main{
-    width: 1180px;
+    width: 100%;
     height: 320px;
     background-color: white;
     margin-top: 50px;
@@ -385,4 +387,32 @@ body{
 }
 .button-standart:hover{
     background-color: var(--color-highlighting-orange);
+}
+
+
+@media (max-width:1250px){
+    .right-nav {
+        margin-right: 0;
+    }
+    .left-f {
+        margin-left: 0;
+    }
+    .left-nav {
+        margin-left: 0;
+    }
+}
+
+@media (max-width:1180px){
+    .container1180 {
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 200px;
+    }
+    .description {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+    }
 }

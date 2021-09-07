@@ -19,10 +19,10 @@
                     </div>
                     <div class="{% if user %}basket-full{% endif %} main-menu">
                         <a href="{% url 'home' %}">Главная</a>
-                        <a href="#">Доставка</a>
-                        <a href="#">Контакты</a>
+                        <a href="#delivery">Доставка</a>
+                        <a href="#contacts">Контакты</a>
                         <div>
-                            <a href="{% url 'basket' %}">Корзина</a>
+                            <a href="{% if user %}{% url 'basket' %}{% endif %}">Корзина</a>
                         </div>
                     </div>
                     <div href="#popup" class="call right-nav popup-link">
@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="content-conteiner">
-        <div class="contain content-center">
+        <div class="content-center">
             <div class="content mt250">
                 <h1 class="h1">Каталог</h1>
                 <div class="card-list">
@@ -54,7 +54,7 @@
                     {% endblock %}
                 </div>
                 <div class="still">
-                    <a href="#" class="button3">Показать ещё</a>
+                    <a href="?all_products=True" class="button3">Показать ещё</a>
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
                 </p>
             </div>
         </div>
-        <div class="content mt250">
+        <div id="delivery" class="content mt250">
             <h1 class="h1">Доставка</h1>
             <div class="flex flex-space-between align-items-center mt50">
                 <p class="p-index">
@@ -101,40 +101,13 @@
                 <div class="delivery"></div>
             </div>
         </div>
-        <div class="content mt250">
+        <div id="contacts" class="content mt250">
             <h1 class="h1">Контакты</h1>
             <div class="contacts mt50"></div>
         </div>
     </div>
-    <div id="popup" class="popup">
-        <div class="popup-body">
-            <div class="popup-content">
-                <div class="popup-contain">
-                    <div class="popup-close close-popup"></div>
-                    <h1 class="h2-style mt50">Обратная связь</h1>
-                    <p class="mt20">
-                        Оставьте Ваши данные и мы свяжемся с вами
-                    </p>
-                    <form class="form-call" action="{% url 'feedback' %}" method="GET">
-                        <label class="mt15" for="">
-                            <input class="input-call" id="name_feedback" type="text" name="name" placeholder="Ваше имя">
-                        </label>
-                        <label class="mt10" for="">
-                            <input class="input-call" id="phone_feedback" type="text" name="phone" placeholder="Телефон">
-                        </label>
-                        <div class="check-lable">
-                            <label for="">
-                                <input type="checkbox" name="checkbox" id="checkbox_feedback" placeholder="Я согласен">
-                            </label>
-                            <a href="#">Я согласен с политикой конфеденциальности</a>
-                        </div>
-                        <button class="submit-popup" type="submit" id="feedback">Перезвонить мне</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     {% include 'shop/_footer.html' %}
+    {% include 'shop/_popup.html' %}
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="{% static 'shop/js/jquery.formstyler.min.js' %}"></script>
     <script src="{% static 'shop/js/script.js' %}"></script>

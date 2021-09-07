@@ -106,6 +106,13 @@ class MakingOrder(View):
         )
         return mail
 
+    def clear_basket(self):
+        user = self.get_user()
+        services = Services.objects.filter(customer=user)
+        for i in services:
+            i.delete()
+        user.delete()
+
     def get(self, request):
         form = MakingOrderForm()
         context = {
@@ -118,7 +125,9 @@ class MakingOrder(View):
         form = MakingOrderForm(request.POST)
         if form.is_valid():
             form.save()
-            self.send_mail_with_order(form.cleaned_data)
+            mail = self.send_mail_with_order(form.cleaned_data)
+            if mail:
+                self.clear_basket()
         return redirect('home')
 
 
@@ -131,10 +140,14 @@ class ShopHome(ListView):
         context = super().get_context_data(**kwargs)
         context['title_html'] = 'Главная страница'
         context['user'] = self.get_user()
+        print(f'\n{self.get_queryset()}\n')
         return context
 
     def get_queryset(self):
-        return Product.objects.filter(is_published=True)
+        all_products = self.request.GET.get('all_products')
+        if all_products:
+            return Product.objects.filter(is_published=True)
+        return Product.objects.filter(is_published=True)[:4]
 
     def get_user(self):
         ip = self.request.META.get('REMOTE_ADDR')

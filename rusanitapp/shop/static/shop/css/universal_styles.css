@@ -136,12 +136,12 @@ body{
     margin-left: 130px;
 }
 .call2{
-    /* margin-top: 30px; */
     height: 42px;
     width: 195px;
     background-color: var(--color-green);
     border-radius: 10px;
     transition: background-color .2s linear;
+    cursor: pointer;
 }
 .call2:hover{
     background-color: var(--color-green-strong);
@@ -202,8 +202,8 @@ footer{
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
     top: 0;
     left: 0;
     opacity: 0;
@@ -354,4 +354,42 @@ body.lock{
 }
 .buttom-order:hover{
     background-color: var(--color-highlighting-orange);
+}
+
+.form-contain{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+@media (max-width:1250px){
+    .right-nav {
+        margin-right: 0;
+    }
+    .left-f {
+        margin-left: 0;
+    }
+    .left-nav {
+        margin-left: 0;
+    }
+}
+
+@media (max-width:1180px){
+    .card-list {
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+    .form-contain{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .order-form-right {
+        margin-top: 20px;
+        width: 608px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

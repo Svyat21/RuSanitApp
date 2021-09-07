@@ -1,8 +1,9 @@
 document.getElementById('id_count').value='1';
+document.querySelector('.buttom-description').style.color = '#FD9800';
 
 function valueMinus () {
     let val = document.getElementById('id_count').value;
-    if (Number(val) > 0) {
+    if (Number(val) > 1) {
         val = Number(val) - 1;
         document.getElementById('id_count').value=String(val);
     }
@@ -10,7 +11,7 @@ function valueMinus () {
 
 function valuePlus () {
     let val = document.getElementById('id_count').value;
-    if (Number(val) < 10) {
+    if (Number(val) < 9) {
         val = Number(val) + 1;
         document.getElementById('id_count').value=String(val);
     }

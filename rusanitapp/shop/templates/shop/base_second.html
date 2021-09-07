@@ -17,11 +17,11 @@
             </div>
             <div class="main-menu flex flex-space-between">
                 <a class="font-nav" href="{% url 'home' %}">Главная</a>
-                <a class="font-nav" href="#">Доставка</a>
-                <a class="font-nav" href="#">Контакты</a>
+                <a class="font-nav" href="{% url 'home' %}">Доставка</a>
+                <a class="font-nav" href="{% url 'home' %}">Контакты</a>
                 <div><a class="font-nav" href="#">Корзина</a></div>
             </div>
-            <div class="call right-nav">
+            <div href="#popup" class="call right-nav popup-link">
                 <div>
                     <p class="font-button">Заказать звонок</p>
                 </div>
@@ -33,10 +33,12 @@
         {% endblock %}
     </div>
     {% include 'shop/_footer.html' %}
+    {% include 'shop/_popup.html' %}
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="{% static 'shop/js/jquery.formstyler.min.js' %}"></script>
     <script src="{% static 'shop/js/script.js' %}"></script>
     <script src="{% static 'shop/js/my_script.js' %}"></script>
+    <script src="{% static 'shop/js/popaps.js' %}"></script>
     <script>
         (function($) {
         $(function() {

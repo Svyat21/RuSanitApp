@@ -86,7 +86,7 @@ body{
     margin-right: 130px;
 }
 .call:hover{
-    background-color: #FD9800;
+    background-color: #6BA842;
 }
 .call div{
     margin-top: 10px;
@@ -115,12 +115,6 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
-/* @media (max-width:1440px){
-    .intro-photo{
-        width: 767px;
-        background-image: url(../images/light-house.png);
-    }
-} */
 .intro-h1{
     max-width: 556px;
     font-weight: 700;
@@ -168,11 +162,12 @@ body{
 }
 .card-list{
     margin-top: 50px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
 }
 .card{
     margin: 0 10px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -303,3 +298,24 @@ body{
     line-height: 150%;
     color: var(--color-black);
 }
+
+
+
+
+@media (max-width:1440px){
+    .contain{
+        width: 100%;
+    }
+}
+@media (max-width:1250px){
+    .right-nav {
+        margin-right: 0;
+    }
+    .left-f {
+        margin-left: 0;
+    }
+    .left-nav {
+        margin-left: 0;
+    }
+}
+

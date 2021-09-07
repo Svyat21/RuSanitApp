@@ -4,7 +4,7 @@
     <div class="container1180">
         <h2 class="h1-style mt50">Оформление заказа</h2>
         <p class="mt30 p-style mb10">Заполните контактную информацию</p>
-        <form class="flex flex-space-between" action="{% url 'order' %}" method="POST">
+        <form class="form-contain" action="{% url 'order' %}" method="POST">
             {% csrf_token %}
             <div class="order-form-left">
                 <div class="parent-input">

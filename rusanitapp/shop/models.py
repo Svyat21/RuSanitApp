@@ -166,7 +166,6 @@ class Specifications(models.Model):
     people_amount = models.CharField(max_length=255, verbose_name='Количество пользователей')
     maximum_reset = models.CharField(max_length=255, verbose_name='Максимальный залповый сброс')
     power = models.CharField(max_length=255, verbose_name='Потребляемая мощность')
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='url')
 
     class Meta:
         verbose_name = 'Характеристики'

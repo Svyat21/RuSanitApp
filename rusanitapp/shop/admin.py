@@ -12,6 +12,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Order)
+admin.site.register(Customer)
 admin.site.register(SizeProduct)
 admin.site.register(Montage)
 admin.site.register(MountingNeck)

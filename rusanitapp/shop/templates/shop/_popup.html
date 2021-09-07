@@ -1,0 +1,28 @@
+<div id="popup" class="popup">
+    <div class="popup-body">
+        <div class="popup-content">
+            <div class="popup-contain">
+                <div class="popup-close close-popup"></div>
+                <h1 class="h2-style mt50">Обратная связь</h1>
+                <p class="mt20">
+                    Оставьте Ваши данные и мы свяжемся с вами
+                </p>
+                <form class="form-call" action="{% url 'feedback' %}" method="GET">
+                    <label class="mt15" for="">
+                        <input class="input-call" id="name_feedback" type="text" name="name" placeholder="Ваше имя">
+                    </label>
+                    <label class="mt10" for="">
+                        <input class="input-call" id="phone_feedback" type="text" name="phone" placeholder="Телефон">
+                    </label>
+                    <div class="check-lable">
+                        <label for="">
+                            <input type="checkbox" name="checkbox" id="checkbox_feedback" placeholder="Я согласен">
+                        </label>
+                        <a href="#">Я согласен с политикой конфеденциальности</a>
+                    </div>
+                    <button class="submit-popup" type="submit" id="feedback">Перезвонить мне</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
