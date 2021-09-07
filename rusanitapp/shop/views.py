@@ -26,7 +26,6 @@ def ordering_feedback(request):
         messages.error(request, 'не все поля заполнены!')
         return HttpResponse('no', content_type='text/html')
     else:
-        print(f'\nGET запрос не обработан\n')
         return HttpResponse('no', content_type='text/html')
 
 
@@ -140,7 +139,6 @@ class ShopHome(ListView):
         context = super().get_context_data(**kwargs)
         context['title_html'] = 'Главная страница'
         context['user'] = self.get_user()
-        print(f'\n{self.get_queryset()}\n')
         return context
 
     def get_queryset(self):
@@ -229,7 +227,6 @@ class ShowProduct(DetailView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_html'] = self.object.name
-        # sizes = self.get_sizes()
         context['form'] = ServicesForm(sizes=self.get_sizes())
         context['albums'] = self.get_album()
         context['photo_one'] = self.get_album_one()
@@ -258,7 +255,6 @@ class ShowProduct(DetailView):
         sizes = self.get_sizes()
         form = ServicesForm(request.POST, sizes=sizes)
         if form.is_valid():
-            print(f'\n{form.cleaned_data}\n')
             service.size = form.cleaned_data['size']
             service.montage = form.cleaned_data['montage']
             service.elongated_neck = form.cleaned_data['elongated_neck']
@@ -272,9 +268,3 @@ class ShowProduct(DetailView):
             product.customer = user
             product.save()
         return redirect('basket')
-
-
-# class AddCart(View):
-#     # template_name = 'shop/product.html'
-#     def post(self, request, *args, **kwargs):
-#         return HttpResponse('This is POST request')
