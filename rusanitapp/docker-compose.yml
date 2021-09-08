@@ -37,3 +37,4 @@ services:
       - rusanit
     volumes:
       - ./static/:/static
+      - ./docker/nginx/certs:/etc/ssl/certs
