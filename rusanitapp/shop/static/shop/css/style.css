@@ -285,7 +285,7 @@ body{
     background-image: url(../images/truck.jpg);
 }
 .contacts{
-    width: 1180px;
+    max-width: 1180px;
     height: 359px;
     background-image: url(../images/map.jpg);
     margin-bottom: 400px;

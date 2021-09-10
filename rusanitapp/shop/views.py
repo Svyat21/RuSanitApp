@@ -7,6 +7,15 @@ from shop.forms import ServicesForm, MakingOrderForm
 from django.core.mail import send_mail
 
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+
 def ordering_feedback(request):
     if request.GET:
         if request.GET['name'] and request.GET['phone']:
@@ -37,7 +46,7 @@ def remove_obj_basket(request, service_pk):
 
 class MakingOrder(View):
     def get_user(self):
-        ip = self.request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(self.request)
         user = Customer.objects.filter(user_ip=ip)
         if user:
             return user[0]
@@ -148,7 +157,14 @@ class ShopHome(ListView):
         return Product.objects.filter(is_published=True)[:4]
 
     def get_user(self):
-        ip = self.request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(self.request)
+        send_mail(
+            subject=f"отчет",
+            message=f'{ip}',
+            from_email='noreply@rs-eco.ru',
+            recipient_list=['sursvyat@gmail.com'],
+            fail_silently=True,
+        )
         user = Customer.objects.filter(user_ip=ip)
         if user:
             return user[0]
@@ -168,7 +184,7 @@ class Basket(ListView):
         return context
 
     def get_user(self):
-        ip = self.request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(self.request)
         user = Customer.objects.filter(user_ip=ip)
         if user:
             return user[0]
@@ -234,7 +250,7 @@ class ShowProduct(DetailView):
         return context
 
     def get_user(self, request):
-        ip = request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(request)
         user = Customer.objects.filter(user_ip=ip)
         if user:
             return user[0]
