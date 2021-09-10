@@ -122,6 +122,16 @@ body{
 .ml20{
     margin-left: 20px;
 }
+.ml10{
+    margin-left: 10px;
+}
+.mr10{
+    margin-right: 10px;
+}
+.mlr10{
+    margin-right: 10px;
+    margin-left: 10px;
+}
 
 
 .logo-f{

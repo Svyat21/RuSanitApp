@@ -86,7 +86,7 @@ body{
     margin-right: 130px;
 }
 .call:hover{
-    background-color: #6BA842;
+    background-color: #FD9800;
 }
 .call div{
     margin-top: 10px;
@@ -294,7 +294,7 @@ body{
     width: 580px;
     font-style: normal;
     font-weight: 300;
-    font-size: 22px;
+    font-size: 18px;
     line-height: 150%;
     color: var(--color-black);
 }

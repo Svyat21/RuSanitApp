@@ -158,13 +158,13 @@ class ShopHome(ListView):
 
     def get_user(self):
         ip = get_client_ip(self.request)
-        send_mail(
-            subject=f"отчет",
-            message=f'{ip}',
-            from_email='noreply@rs-eco.ru',
-            recipient_list=['sursvyat@gmail.com'],
-            fail_silently=True,
-        )
+        # send_mail(
+        #     subject=f"отчет",
+        #     message=f'{ip}',
+        #     from_email='noreply@rs-eco.ru',
+        #     recipient_list=['sursvyat@gmail.com'],
+        #     fail_silently=True,
+        # )
         user = Customer.objects.filter(user_ip=ip)
         if user:
             return user[0]
