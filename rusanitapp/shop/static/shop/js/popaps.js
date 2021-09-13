@@ -1,4 +1,60 @@
-// window.onload = function()
+document.querySelector('#show_all').addEventListener('click', function (e) {
+    let postCount = document.querySelector('#prod_count').getAttribute('count');
+    let data = {
+        postCount: postCount
+    };
+    $.ajax({
+    type: 'GET',
+    url: 'show_all/',
+    data: data,
+    dataType: 'json',
+    cache: false,
+    success: function (data) {
+        let result = data['data']
+        document.querySelector('.all-products').innerHTML = ''
+        $.each(result, function (key, obj) {
+            if (obj['count']) {
+                $('.all-products').append(
+                    '<div count="' + obj['count'] + '" id="prod_count"></div>'
+                );
+            } else {
+                var tagProduct = '';
+                if (obj['tag_product'] === 'hit-of-sales') {
+                    tagProduct = '<p class="left-side ' + obj['tag_product'] + '">Хит продаж</p>';
+                } else if (obj['tag_product'] === 'new-product') {
+                    tagProduct = '<p class="left-side ' + obj['tag_product'] + '">Хит продаж</p>';
+                } else {
+                    tagProduct = '<p class="left-side"></p>';
+                }
+                $('.all-products').append(
+                    '<div class="card">' +
+                        '<div class="card-contain">' +
+                            '<div class="upper-part">' +
+                                tagProduct +
+                                '<div class="right-side">' +
+                                    '<p>' + obj['people_amount'] + '</p>' +
+                                '</div>' +
+                            '</div>' +
+                            '<div class="card-photo">' +
+                                '<img src="' + obj['main_photo'] + '" alt="#">' +
+                            '</div>' +
+                            '<p class="text-card-bold">' + obj['name'] + '</p>' +
+                            '<p class="text-card">' + obj['short_description'] + '</p>' +
+                            '<div class="lower-part">' +
+                                '<a href="' + obj['get_absolute_url'] + '" class="button-2">Подробнее</a>' +
+                                '<p class="text-card-bold">' + obj['price'] + ' руб.</p>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>'
+                );
+            }
+        })
+    },
+    });
+    e.preventDefault();
+});
+
+
 const popupLincs = document.querySelectorAll('.popup-link');
 const body = document.querySelector('body');
 const lockPadding = document.querySelectorAll('.lock-padding');
@@ -96,19 +152,6 @@ document.addEventListener('keydown', function(e) {
         popupClose(popupActive);
     }
 });
-
-function allProducts() {
-    $.ajax({
-    type: 'GET',
-    url: '/',
-    data: {
-        'all_products': 'True',
-    },
-    dataType: 'text',
-    cache: false,
-    success: false,
-    });
-}
 
 document.querySelector('#feedback').addEventListener('click', function (e) {
     $.ajax({

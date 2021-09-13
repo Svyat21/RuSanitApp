@@ -5,6 +5,17 @@ from django.views.generic import ListView, DetailView, View
 from shop.models import Product, SizeProduct, PhotoAlbum, Specifications, Services, Customer
 from shop.forms import ServicesForm, MakingOrderForm
 from django.core.mail import send_mail
+from django.core import serializers
+from django.http import JsonResponse
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 
 def ordering_feedback(request):
@@ -26,7 +37,6 @@ def ordering_feedback(request):
         messages.error(request, 'не все поля заполнены!')
         return HttpResponse('no', content_type='text/html')
     else:
-        print(f'\nGET запрос не обработан\n')
         return HttpResponse('no', content_type='text/html')
 
 
@@ -38,7 +48,7 @@ def remove_obj_basket(request, service_pk):
 
 class MakingOrder(View):
     def get_user(self):
-        ip = self.request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(self.request)
         user = Customer.objects.filter(user_ip=ip)
         if user:
             return user[0]
@@ -140,7 +150,6 @@ class ShopHome(ListView):
         context = super().get_context_data(**kwargs)
         context['title_html'] = 'Главная страница'
         context['user'] = self.get_user()
-        print(f'\n{self.get_queryset()}\n')
         return context
 
     def get_queryset(self):
@@ -150,11 +159,47 @@ class ShopHome(ListView):
         return Product.objects.filter(is_published=True)[:4]
 
     def get_user(self):
-        ip = self.request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(self.request)
+        # send_mail(
+        #     subject=f"отчет",
+        #     message=f'{ip}',
+        #     from_email='noreply@rs-eco.ru',
+        #     recipient_list=['sursvyat@gmail.com'],
+        #     fail_silently=True,
+        # )
         user = Customer.objects.filter(user_ip=ip)
         if user:
             return user[0]
         return None
+
+
+class ShowAll(View):
+    def get_queryset_to_dict(self, queryset):
+        data = []
+        for prod in queryset:
+            obj = {}
+            if prod.tag_product:
+                obj["tag_product"] = prod.tag_product
+            else:
+                obj["tag_product"] = None
+            obj["people_amount"] = prod.specifications.people_amount
+            obj["main_photo"] = prod.main_photo.url
+            obj["name"] = prod.name
+            obj["short_description"] = prod.short_description
+            obj["get_absolute_url"] = prod.get_absolute_url()
+            obj["price"] = prod.price
+            data.append(obj)
+        data.append({'count': queryset.count()})
+        return data
+
+    def get(self, request, *args, **kwargs):
+        count_post = request.GET.get('postCount')
+        if int(count_post) > 4:
+            queryset = Product.objects.filter(is_published=True)[:4]
+        else:
+            queryset = Product.objects.filter(is_published=True)
+        data = self.get_queryset_to_dict(queryset)
+        return JsonResponse({'data': data})
 
 
 class Basket(ListView):
@@ -170,7 +215,7 @@ class Basket(ListView):
         return context
 
     def get_user(self):
-        ip = self.request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(self.request)
         user = Customer.objects.filter(user_ip=ip)
         if user:
             return user[0]
@@ -229,7 +274,6 @@ class ShowProduct(DetailView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_html'] = self.object.name
-        # sizes = self.get_sizes()
         context['form'] = ServicesForm(sizes=self.get_sizes())
         context['albums'] = self.get_album()
         context['photo_one'] = self.get_album_one()
@@ -237,7 +281,7 @@ class ShowProduct(DetailView):
         return context
 
     def get_user(self, request):
-        ip = request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(request)
         user = Customer.objects.filter(user_ip=ip)
         if user:
             return user[0]
@@ -258,7 +302,6 @@ class ShowProduct(DetailView):
         sizes = self.get_sizes()
         form = ServicesForm(request.POST, sizes=sizes)
         if form.is_valid():
-            print(f'\n{form.cleaned_data}\n')
             service.size = form.cleaned_data['size']
             service.montage = form.cleaned_data['montage']
             service.elongated_neck = form.cleaned_data['elongated_neck']
@@ -272,9 +315,3 @@ class ShowProduct(DetailView):
             product.customer = user
             product.save()
         return redirect('basket')
-
-
-# class AddCart(View):
-#     # template_name = 'shop/product.html'
-#     def post(self, request, *args, **kwargs):
-#         return HttpResponse('This is POST request')

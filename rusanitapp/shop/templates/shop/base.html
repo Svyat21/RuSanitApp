@@ -3,7 +3,13 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
     <title>{{ title_html }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{% static 'shop/css/jquery.formstyler.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'shop/css/jq-formstyle.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'shop/css/style.css' %}">
@@ -14,7 +20,7 @@
         <div class="contain">
             <header>
                 <nav class="nav">
-                    <div class="logo left-nav">
+                    <div class="logo left-nav" id="start">
                         <p>RuSanit</p>
                     </div>
                     <div class="{% if user %}basket-full{% endif %} main-menu">
@@ -37,10 +43,10 @@
             <div class="intro-text">
                 <h1 class="intro-h1">Локальная очистная станция RuSanit</h1>
                 <p class="intro-p">
-                    Предназначена для улучшенной очистки канализационных сбросов и рассчитана на постоянное проживание разного количества человек, 
+                    Предназначена для улучшенной очистки канализационных сбросов и рассчитана на постоянное проживание разного количества человек,
                     в зависимости от размеров станции
                 </p>
-                <a href="#" class="button">Подробнее</a>
+                <a href="#about" class="button">Подробнее</a>
             </div>
             <div class="intro-photo"></div>
         </div>
@@ -49,66 +55,90 @@
         <div class="content-center">
             <div class="content mt250">
                 <h1 class="h1">Каталог</h1>
-                <div class="card-list">
+                <div class="card-list all-products">
                     {% block content %}
                     {% endblock %}
                 </div>
-                <div class="still">
-                    <a href="?all_products=True" class="button3">Показать ещё</a>
+                <div id="show_all" href="#" class="still">
+                    <div>
+                        <p>Показать ещё</p>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="content mt250">
-            <h1 class="h1">Преимущества ЛОС RuSanit</h1>
-            <div class="flex flex-space-between align-items-center mt50">
+            <h1 class="h1 ml10">Преимущества ЛОС RuSanit</h1>
+            <div class="flex flex-space-between align-items-center mt50 mlr10">
                 <p class="p-index">
-                    Три стадии очистки с денитрификацией, позволяют ЛОС RuSanit гарантировать 
-                    крайне высокий уровень очистки сточных вод. Станции обладают функцией 
-                    повышенного залпового сброса и способны работать в таком режиме от 10 минут 
-                    до 1 часа. Опционально, возможно установить насос для принудительного выброса 
-                    очищенной воды. Внутренние трубопроводы ЛОС RuSanit имеет большие диаметры, 
-                    а отсутствие подвижных частей, позволяет исключить забивания и обеспечивает 
-                    быстрое пропускания неразлагающийся мусор через локальную очистную станцию.
+                    Три стадии очистки с денитрификацией, позволяют ЛОС RuSanit гарантировать
+                    крайне высокий уровень очистки сточных вод. Станции обладают функцией
+                    повышенного залпового сброса и способны работать в таком режиме от 10 минут
+                    до 1 часа. Опционально, возможно установить насос для принудительного выброса
+                    очищенной воды. Внутренние трубопроводы ЛОС RuSanit имеет большие диаметры,
+                    а отсутствие подвижных частей, позволяет исключить забивания и обеспечивает
+                    быстрое пропускания неразлагающийся мусор через локальную очистную станцию.
                 </p>
-                <div class="advantages"></div>
+                <div class="advantages ml10"></div>
             </div>
         </div>
-        <div class="content mt250">
-            <h1 class="h1">О нас</h1>
-            <div class="flex flex-space-between align-items-center mt50">
+        <div id="about" class="content mt250">
+            <h1 class="h1 ml10">О нас</h1>
+            <div class="flex flex-space-between align-items-center mt50 mlr10">
                 <div class="about"></div>
-                <p class="p-index">
-                    Мы является единственным официальным партнёром — дистрибьютором компании 
-                    RuSanit. Наша компания лидирует в сфере предоставления услуг по подбору и 
-                    продаже локальных очистных станций, а также установке очистных систем «под 
-                    ключ». Организуем полное сопровождение от первого звонка до проектирования 
-                    и реализации проекта! Все наши сотрудники являются квалифицированными 
-                    профессионалами своего дела и с удовольствием ответят на все интересующие 
-                    вас вопросы.
+                <p class="p-index ml10">
+                    Мы являемся официальным партнёром — дистрибьютором компании RuSanit. Наша компания лидирует
+                    в сфере предоставления услуг по подбору и продаже локальных очистных станций, а также установке
+                    очистных систем «под ключ». Организуем полное сопровождение от первого звонка до проектирования
+                    и реализации проекта! Все наши сотрудники являются квалифицированными профессионалами своего дела
+                    и с удовольствием ответят на все интересующие вас вопросы.
                 </p>
             </div>
         </div>
         <div id="delivery" class="content mt250">
-            <h1 class="h1">Доставка</h1>
-            <div class="flex flex-space-between align-items-center mt50">
+            <h1 class="h1 ml10">Доставка</h1>
+            <div class="flex flex-space-between align-items-center mt50 mlr10">
                 <p class="p-index">
-                    Мы свяжемся с вами и подберём индивидуальные условия погрузки, доставки, 
-                    разгрузки и монтажа системы. Доставка осуществляется логистической 
-                    компанией — партнёром под нашим контролем, мы гарантируем безопасность и 
-                    сохранность всей продукции на всех этапах сотрудничества. 
-                    При заказе монтажа погрузку и разгрузку мы осуществим бесплатно.
+                    Мы свяжемся с вами и подберём индивидуальные условия погрузки, доставки,
+                    разгрузки и монтажа системы. Доставка осуществляется логистической
+                    компанией — партнёром под нашим контролем, мы гарантируем безопасность и
+                    сохранность всей продукции на всех этапах сотрудничества.
+                    При заказе монтажа погрузку и разгрузку мы осуществим бесплатно.
                 </p>
-                <div class="delivery"></div>
+                <div class="delivery ml10"></div>
             </div>
         </div>
-        <div id="contacts" class="content mt250">
+        <div id="contacts" class="contacts-content mt250">
             <h1 class="h1">Контакты</h1>
-            <div class="contacts mt50"></div>
+            <div class="contacts mt50">
+                <div class="form-content">
+                    <div class="form-contain-feedback">
+                        <h1 class="h2-style">Остались вопросы?</h1>
+                        <form class="form-contacts" action="{% url 'feedback' %}" method="GET">
+                            <label class="mt20" for="">
+                                <input class="input-contacts" id="name_feedback" type="text" name="name" placeholder="Ваше имя">
+                            </label>
+                            <label class="mt15" for="">
+                                <input class="input-contacts" id="phone_feedback" type="text" name="phone" placeholder="Как с вами связаться">
+                            </label>
+                            <label class="mt15" for="">
+                                <textarea rows="5" id="text_feedback" type="text" name="phone" placeholder="Ваше сообщение или вопрос"></textarea>
+                            </label>
+                            <button class="submit-contacts" type="submit" id="feedback">ОТПРАВИТЬ</button>
+                        </form>
+                    </div>
+                </div>
+                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A17caa0ee093854e5fb7382105c275d01b06f2b465cf706bc9f1d2baf5266859c&amp;width=100%25&amp;height=600&amp;lang=ru_RU&amp;scroll=true"></script>
+            </div>
+        </div>
+        <div class="content button-up">
+            <a href="#start">
+                <div class="up"></div>
+            </a>
         </div>
     </div>
     {% include 'shop/_footer.html' %}
     {% include 'shop/_popup.html' %}
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="{% static 'shop/js/jquery.formstyler.min.js' %}"></script>
     <script src="{% static 'shop/js/script.js' %}"></script>
     <script src="{% static 'shop/js/my_script.js' %}"></script>
