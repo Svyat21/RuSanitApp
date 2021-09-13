@@ -3,6 +3,15 @@ document.querySelector('#show_all').addEventListener('click', function (e) {
     let data = {
         postCount: postCount
     };
+    if (document.querySelector('#show_all').classList.value === 'still') {
+        document.querySelector('.more').innerHTML = 'Свернуть';
+        document.querySelector('#show_all').classList.remove('still');
+        document.querySelector('#show_all').classList.add('roll-up');
+    } else {
+        document.querySelector('.more').innerHTML = 'Показать ещё';
+        document.querySelector('#show_all').classList.remove('roll-up');
+        document.querySelector('#show_all').classList.add('still');
+    }
     $.ajax({
     type: 'GET',
     url: 'show_all/',
@@ -11,7 +20,7 @@ document.querySelector('#show_all').addEventListener('click', function (e) {
     cache: false,
     success: function (data) {
         let result = data['data']
-        document.querySelector('.all-products').innerHTML = ''
+        document.querySelector('.all-products').innerHTML = '';
         $.each(result, function (key, obj) {
             if (obj['count']) {
                 $('.all-products').append(

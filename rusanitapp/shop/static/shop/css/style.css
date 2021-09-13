@@ -290,6 +290,32 @@ body{
 .still p{
     color: white;
 }
+.roll-up{
+    display: flex;
+    margin: 50px auto 0px auto;
+    width: 180px;
+    height: 55px;
+    background-color: #84C558;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color .2s linear;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.roll-up:hover{
+    background-color: #6BA842;
+}
+.roll-up div{
+    width: 100px;
+    background-image: url(../../shop/images/more_up.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.roll-up p{
+    color: white;
+}
 
 
 
