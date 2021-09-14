@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, View
 from shop.models import Product, SizeProduct, PhotoAlbum, Specifications, Services, Customer
 from shop.forms import ServicesForm, MakingOrderForm
 from django.core.mail import send_mail
+from django.http import JsonResponse
 
 
 def get_client_ip(request):
@@ -169,6 +170,35 @@ class ShopHome(ListView):
         if user:
             return user[0]
         return None
+
+
+class ShowAll(View):
+    def get_queryset_to_dict(self, queryset):
+        data = []
+        for prod in queryset:
+            obj = {}
+            if prod.tag_product:
+                obj["tag_product"] = prod.tag_product
+            else:
+                obj["tag_product"] = None
+            obj["people_amount"] = prod.specifications.people_amount
+            obj["main_photo"] = prod.main_photo.url
+            obj["name"] = prod.name
+            obj["short_description"] = prod.short_description
+            obj["get_absolute_url"] = prod.get_absolute_url()
+            obj["price"] = prod.price
+            data.append(obj)
+        data.append({'count': queryset.count()})
+        return data
+
+    def get(self, request, *args, **kwargs):
+        count_post = request.GET.get('postCount')
+        if int(count_post) > 4:
+            queryset = Product.objects.filter(is_published=True)[:4]
+        else:
+            queryset = Product.objects.filter(is_published=True)
+        data = self.get_queryset_to_dict(queryset)
+        return JsonResponse({'data': data})
 
 
 class Basket(ListView):
