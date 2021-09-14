@@ -102,10 +102,13 @@ body{
     margin-top: 50px;
 }
 .mt40{
-    margin-top: 30px;
+    margin-top: 40px;
 }
 .mt30{
     margin-top: 30px;
+}
+.mt25{
+    margin-top: 25px;
 }
 .mt20{
     margin-top: 20px;
@@ -124,6 +127,9 @@ body{
 }
 .ml10{
     margin-left: 10px;
+}
+.ml5{
+    margin-left: 5px;
 }
 .mr10{
     margin-right: 10px;
@@ -189,6 +195,14 @@ footer{
     width: 165px;
     margin-top: 69px;
 }
+.foter-a{
+    text-decoration: none;
+    color: white;
+    transition: color 0.2s linear;
+}
+.foter-a:hover{
+    color: var(--color-gray);
+}
 .fb{
     width: 20px;
     height: 19.88px;
@@ -234,6 +248,7 @@ footer{
     align-items: center;
     justify-content: center;
     padding: 20px;
+    z-index: 2;
 }
 .popup-content{
     background-color: white;
@@ -243,16 +258,22 @@ footer{
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    z-index: 2;
 }
 .popup-contain{
     width: 405px;
     height: 424px;
 }
 .popup-close{
-    background-image: url(../images/exit.svg);
-    width: 30px;
-    height: 30px;
+    background-image: url(../images/close.svg);
+    width: 40px;
+    height: 40px;
     margin-left: auto;
+    cursor: pointer;
+    transition: background-image 0.2s linear;
+}
+.popup-close:hover{
+    background-image: url(../images/close_active.svg);
 }
 .submit-popup{
     width: 212px;
@@ -266,6 +287,10 @@ footer{
     line-height: 25px;
     margin-top: 50px;
     cursor: pointer;
+    transition: background-color 0.2s linear;
+}
+.submit-popup:hover{
+    background-color: var(--color-highlighting-orange);
 }
 .popup-body p{
     font-style: normal;
@@ -278,7 +303,9 @@ footer{
     font-weight: normal;
     font-size: 14px;
     line-height: 155%;
-    margin-left: 15px;
+    margin-left: 5px;
+    text-decoration: revert;
+    color: #989AA9;
 }
 .form-call label{
     display: block;

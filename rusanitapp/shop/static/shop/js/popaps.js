@@ -1,4 +1,6 @@
-document.querySelector('#show_all').addEventListener('click', function (e) {
+let show_all = document.querySelector('#show_all');
+if (show_all){
+    show_all.addEventListener('click', function (e) {
     let postCount = document.querySelector('#prod_count').getAttribute('count');
     let data = {
         postCount: postCount
@@ -62,6 +64,7 @@ document.querySelector('#show_all').addEventListener('click', function (e) {
     });
     e.preventDefault();
 });
+}
 
 
 const popupLincs = document.querySelectorAll('.popup-link');
