@@ -33,7 +33,7 @@ if (show_all){
                 if (obj['tag_product'] === 'hit-of-sales') {
                     tagProduct = '<p class="left-side ' + obj['tag_product'] + '">Хит продаж</p>';
                 } else if (obj['tag_product'] === 'new-product') {
-                    tagProduct = '<p class="left-side ' + obj['tag_product'] + '">Хит продаж</p>';
+                    tagProduct = '<p class="left-side ' + obj['tag_product'] + '">Новинка</p>';
                 } else {
                     tagProduct = '<p class="left-side"></p>';
                 }
@@ -53,7 +53,7 @@ if (show_all){
                             '<p class="text-card">' + obj['short_description'] + '</p>' +
                             '<div class="lower-part">' +
                                 '<a href="' + obj['get_absolute_url'] + '" class="button-2">Подробнее</a>' +
-                                '<p class="text-card-bold">' + obj['price'] + ' руб.</p>' +
+                                '<p class="text-card-bold">' + priceStr(obj['price']) + ' руб.</p>' +
                             '</div>' +
                         '</div>' +
                     '</div>'
@@ -66,10 +66,27 @@ if (show_all){
 });
 }
 
+function priceStr(str) {
+    let price_str = String(str).split('').reverse();
+    let c = 0;
+    for (let i = 0; i < price_str.length; i += 3) {
+        if (i > 3) {
+            price_str.splice(i + c, 0, ' ');
+            c++;
+        } else if (i === 3) {
+            price_str.splice(i, 0, ' ');
+            c++;
+        }
+    }
+    return price_str.reverse().join('');
+}
+
 
 const popupLincs = document.querySelectorAll('.popup-link');
 const body = document.querySelector('body');
 const lockPadding = document.querySelectorAll('.lock-padding');
+const jqSelectbox = document.querySelectorAll('.novisible');
+console.log(jqSelectbox)
 
 let unlock = true;
 
@@ -105,6 +122,11 @@ function popupOpen (curentPopup) {
         } else {
             bodyLock();
         }
+        if (jqSelectbox) {
+            jqSelectbox.forEach(function (value) {
+                value.classList.add('jq-hidden');
+            });
+        }
         curentPopup.classList.add('open');
         curentPopup.addEventListener('click', function (e) {
             if (!e.target.closest('.popup-content')) {
@@ -115,6 +137,13 @@ function popupOpen (curentPopup) {
 }
 function popupClose(popupActive, doUnlock = true) {
     if (unlock) {
+        const jqSelectbox = document.querySelectorAll('.novisible');
+        if (jqSelectbox) {
+            jqSelectbox.forEach(function (value) {
+                console.log(value);
+                value.classList.remove('jq-hidden');
+            });
+        }
         popupActive.classList.remove('open');
         if (doUnlock) {
             bodyUnLock();

@@ -40,6 +40,15 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('show_product', kwargs={'prod_slug': self.slug})
 
+    def price_str(self):
+        price_str = str(self.price)[::-1]
+        res, last_el = '', 0
+        for i in range(0, len(price_str), 3):
+            res += price_str[i - 3:i] + ' '
+            last_el = i
+        res = res + price_str[last_el:]
+        return res[::-1]
+
     class Meta:
         verbose_name = 'Станция'
         verbose_name_plural = 'Станции'

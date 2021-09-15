@@ -20,27 +20,27 @@
                 <h1 class="h1-style">{{ prod.price }} руб.</h1>
                 <form class="form" action="{{ prod.get_absolute_url }}" method="POST">
                     {% csrf_token %}
-                    <div class="form-lable">
+                    <div class="form-lable novisible">
                         <p><label for="{{ form.size.id_for_label }}">{{ form.size.label }}:</label></p>
                         {{ form.size }}
                     </div>
-                    <div class="form-lable div-r">
+                    <div class="form-lable div-r novisible">
                         <p><label for="{{ form.montage.id_for_label }}">{{ form.montage.label }}:</label></p>
                         {{ form.montage }}
                     </div>
-                    <div class="form-lable">
+                    <div class="form-lable novisible">
                         <p><label for="{{ form.elongated_neck.id_for_label }}">{{ form.elongated_neck.label }}:</label></p>
                         {{ form.elongated_neck }}
                     </div>
-                    <div class="form-lable div-r">
+                    <div class="form-lable div-r novisible">
                         <p><label for="{{ form.mounting_neck.id_for_label }}">{{ form.mounting_neck.label }}:</label></p>
                         {{ form.mounting_neck }}
                     </div>
-                    <div class="form-lable">
+                    <div class="form-lable novisible">
                         <p><label for="{{ form.water_disposal.id_for_label }}">{{ form.water_disposal.label }}:</label></p>
                         {{ form.water_disposal }}
                     </div>
-                    <div class="form-lable div-r">
+                    <div class="form-lable div-r novisible">
                         <p><label for="{{ form.additional_options.id_for_label }}">{{ form.additional_options.label }}:</label></p>
                         {{ form.additional_options }}
                     </div>
