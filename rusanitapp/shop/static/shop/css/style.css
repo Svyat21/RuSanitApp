@@ -149,7 +149,7 @@ body{
     background-color: #6BA842;
 }
 .content-conteiner{
-    background-image: url(../images/main_bacground.svg);
+   background-color: #F8F8F8;
 }
 .content-center{
     display: flex;
