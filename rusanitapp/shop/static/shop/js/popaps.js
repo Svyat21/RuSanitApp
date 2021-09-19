@@ -86,7 +86,7 @@ const popupLincs = document.querySelectorAll('.popup-link');
 const body = document.querySelector('body');
 const lockPadding = document.querySelectorAll('.lock-padding');
 const jqSelectbox = document.querySelectorAll('.novisible');
-console.log(jqSelectbox)
+// console.log(jqSelectbox)
 
 let unlock = true;
 

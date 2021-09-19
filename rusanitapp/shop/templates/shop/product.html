@@ -18,7 +18,7 @@
             </div>
             <div class="content-select">
                 <h1 class="h1-style">{{ prod.price }} руб.</h1>
-                <form class="form" action="{{ prod.get_absolute_url }}" method="POST">
+                <form class="form" id="form" action="{{ prod.get_absolute_url }}" method="POST">
                     {% csrf_token %}
                     <div class="form-lable novisible">
                         <p><label for="{{ form.size.id_for_label }}">{{ form.size.label }}:</label></p>
