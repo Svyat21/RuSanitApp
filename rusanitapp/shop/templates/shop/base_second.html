@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ title_html }}</title>
+    <link rel="icon" href="{% static 'shop/images/favicon.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'shop/images/favicon.png' %}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <title>{{ title_html }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -19,9 +20,11 @@
 <body>
     <header class="main-container flex flex-center">
         <nav class="contain flex flex-space-between">
-            <div class="logo left-nav">
-                <p class="font-logo">RuSanit</p>
-            </div>
+            <a class="left-nav" href="{% url 'home' %}">
+                <div class="logo">
+                    <p class="font-logo">RuSanit</p>
+                </div>
+            </a>
             <div class="main-menu flex flex-space-between">
                 <a class="font-nav" href="{% url 'home' %}">Главная</a>
                 <a class="font-nav" href="{% url 'home' %}">Доставка</a>
@@ -53,5 +56,6 @@
         })(jQuery);
     </script>
     <script src="{% static 'shop/js/popaps.js' %}"></script>
+    <script src="{% static 'shop/js/mutate_price.js' %}"></script>
 </body>
 </html>
