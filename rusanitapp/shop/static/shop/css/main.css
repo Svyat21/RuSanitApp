@@ -35,7 +35,6 @@ body{
     font-size: 24px;
     line-height: 29px;
     color: var(--color-black);
-    margin-top: 4px;
 }
 .font-nav{
     font-style: normal;
@@ -87,7 +86,7 @@ body{
 .main-container{
     background-color: white;
     height: 104px;
-    box-shadow: 0px 0px 35px rgba(27, 123, 106, 0.3)
+    box-shadow: 0px 0px 35px rgba(152, 154, 169, 0.2);
 }
 .contain{
     width: 1440px;
@@ -108,6 +107,8 @@ body{
     background-image: url(../images/Union-green.svg);
     background-repeat: no-repeat;
     background-position: right;
+    display: flex;
+    align-items: center;
 }
 .left-nav{
     margin-left: 130px;
@@ -214,14 +215,18 @@ body{
   height: 45px;
   appearance: none;
   border: 0;
-  border-radius: 5px;
-  background: #FD9800;
+  border-radius: 10px;
+  background: var(--color-orange);
   color: white;
   font-size: 18px;
   line-height: 25px;
   margin-left: 10px;
   margin-top: 50px;
   cursor: pointer;
+  transition: background 0.2s linear;
+}
+.submit:hover {
+    background: var(--color-highlighting-orange)
 }
 /* form-lable */
 .form{
@@ -255,17 +260,25 @@ body{
     height: 42px;
     cursor: pointer;
 }
-.minus div{
-    background-image: url(../images/minus.svg);
+.minus{
+    background-image: url(../images/minus_before\ .svg);
     background-repeat: no-repeat;
-    width: 14px;
-    height: 3px;
+    width: 42px;
+    height: 42px;
+    transition: background-image 0.2s linear;
 }
-.plus div{
-    background-image: url(../images/plus.svg);
+.minus:hover{
+    background-image: url(../images/minus_after.svg);
+}
+.plus{
+    background-image: url(../images/plus_before\ .svg);
     background-repeat: no-repeat;
-    width: 14px;
-    height: 14px;
+    width: 42px;
+    height: 42px;
+    transition: background-image 0.2s linear;
+}
+.plus:hover{
+    background-image: url(../images/plus_after.svg);
 }
 /* form-lable */
 .text p{

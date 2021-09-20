@@ -59,6 +59,14 @@
     color: white;
     z-index: 1;
 }
+.jq-number{
+    width: 27px;
+}
+.jq-number__field{
+    display: flex;
+    width: 27px;
+    justify-content: center;
+}
 .jq-number__field input{
     background-color: #F8F8F8;
     width: 13px;
@@ -68,6 +76,9 @@
     font-size: 23px;
     margin-top: 8px;
     z-index: 1;
+}
+.jq-number__spin{
+    display: none;
 }
 .jq-number.focused{
     border: none;

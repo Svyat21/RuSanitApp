@@ -153,23 +153,27 @@ class ShopHome(ListView):
         return context
 
     def get_queryset(self):
-        all_products = self.request.GET.get('all_products')
-        if all_products:
-            return Product.objects.filter(is_published=True)
         return Product.objects.filter(is_published=True)[:4]
+
+    def get_count_prods(self, user, q_set):
+        count = 0
+        for obj in q_set:
+            serv = Services.objects.filter(product=obj).filter(customer=user)
+            if not serv:
+                continue
+            count += 1
+        if count:
+            return count
+        return None
 
     def get_user(self):
         ip = get_client_ip(self.request)
-        # send_mail(
-        #     subject=f"отчет",
-        #     message=f'{ip}',
-        #     from_email='noreply@rs-eco.ru',
-        #     recipient_list=['sursvyat@gmail.com'],
-        #     fail_silently=True,
-        # )
         user = Customer.objects.filter(user_ip=ip)
         if user:
-            return user[0]
+            count_prod = Product.objects.filter(customer=user[0])
+            print(f'\n{count_prod}\n')
+            if count_prod:
+                return self.get_count_prods(user[0], count_prod)
         return None
 
 
@@ -192,7 +196,7 @@ class ShowAll(View):
         data.append({'count': queryset.count()})
         return data
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         count_post = request.GET.get('postCount')
         if int(count_post) > 4:
             queryset = Product.objects.filter(is_published=True)[:4]

@@ -3,12 +3,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <title>{{ title_html }}</title>
     <link rel="icon" href="{% static 'shop/images/favicon.png' %}" type="image/x-icon">
     <link rel="shortcut icon" href="{% static 'shop/images/favicon.png' %}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <title>{{ title_html }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -30,6 +30,7 @@
                         <a href="#delivery">Доставка</a>
                         <a href="#contacts">Контакты</a>
                         <div>
+                            <div><p>{{ user }}</p></div>
                             <a href="{% if user %}{% url 'basket' %}{% endif %}">Корзина</a>
                         </div>
                     </div>
