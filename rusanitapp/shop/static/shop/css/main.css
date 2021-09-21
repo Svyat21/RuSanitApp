@@ -333,7 +333,7 @@ body{
     transition: box-shadow .2s linear;
 }
 .prod-basket-main:hover{
-    box-shadow: 0px 0px 35px rgba(27, 123, 106, 0.3);
+    box-shadow: 0px 0px 35px rgba(152, 154, 169, 0.2);
     border-radius: 10px;
 }    
 .small-contain{
