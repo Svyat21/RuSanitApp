@@ -29,8 +29,8 @@
                         <a href="{% url 'home' %}">Главная</a>
                         <a href="#delivery">Доставка</a>
                         <a href="#contacts">Контакты</a>
-                        <div>
-                            <div><p>{{ user }}</p></div>
+                        <div class="basc">
+                            <div>{% if user %}<p>{{ user }}</p>{% endif %}</div>
                             <a href="{% if user %}{% url 'basket' %}{% endif %}">Корзина</a>
                         </div>
                     </div>
