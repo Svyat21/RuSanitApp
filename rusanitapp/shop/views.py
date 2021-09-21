@@ -214,7 +214,6 @@ class Basket(ListView):
         context = super().get_context_data(**kwargs)
         context['title_html'] = 'Корзина'
         products_shopping_cart = self.get_services()
-        print(f'\n{products_shopping_cart}\n')
         if not products_shopping_cart[0]:
             context['prod_list'] = None
         else:

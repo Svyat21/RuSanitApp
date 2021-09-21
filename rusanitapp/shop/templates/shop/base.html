@@ -31,7 +31,7 @@
                         <a href="#contacts">Контакты</a>
                         <div class="basc">
                             <div>{% if user %}<p>{{ user }}</p>{% endif %}</div>
-                            <a href="{% if user %}{% url 'basket' %}{% endif %}">Корзина</a>
+                            <a href="{% url 'basket' %}">Корзина</a>
                         </div>
                     </div>
                     <div href="#popup" class="call right-nav popup-link">
