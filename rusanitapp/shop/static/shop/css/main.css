@@ -351,6 +351,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin-left: 20px;
 }
 .bascet-prod-servise p{
     font-style: normal;
