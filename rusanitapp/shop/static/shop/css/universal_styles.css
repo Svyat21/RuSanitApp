@@ -95,6 +95,9 @@ body{
     flex-direction: column;
     justify-content: center;
 }
+.mb460{
+    margin-bottom: 460px;
+}
 .mt250{
     margin-top: 250px;
 }

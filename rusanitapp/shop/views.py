@@ -171,7 +171,6 @@ class ShopHome(ListView):
         user = Customer.objects.filter(user_ip=ip)
         if user:
             count_prod = Product.objects.filter(customer=user[0])
-            print(f'\n{count_prod}\n')
             if count_prod:
                 return self.get_count_prods(user[0], count_prod)
         return None
@@ -214,8 +213,13 @@ class Basket(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_html'] = 'Корзина'
-        context['prod_list'] = self.get_services()[0]
-        context['full_price'] = self.get_services()[1]
+        products_shopping_cart = self.get_services()
+        print(f'\n{products_shopping_cart}\n')
+        if not products_shopping_cart[0]:
+            context['prod_list'] = None
+        else:
+            context['prod_list'] = products_shopping_cart[0]
+            context['full_price'] = products_shopping_cart[1]
         return context
 
     def get_user(self):
