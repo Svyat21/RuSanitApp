@@ -373,9 +373,14 @@ body{
     justify-content: space-between;
 }
 .delete{
-    background-image: url(../images/exit.svg);
+    background-image: url(../images/close.svg);
+    background-size: contain;
     width: 30px;
     height: 30px;
+    transition: background-image 0.2s linear;
+}
+.delete:hover{
+    background-image: url(../images/close_active.svg);
 }
 .full-price{
     font-style: normal;
