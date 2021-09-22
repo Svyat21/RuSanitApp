@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
-from shop.models import Product, SizeProduct, PhotoAlbum, Specifications, Services, Customer
+from shop.models import Product, SizeProduct, PhotoAlbum, Specifications, Services, Customer, Order
 from shop.forms import ServicesForm, MakingOrderForm
 from django.core.mail import send_mail
 from django.core import serializers
@@ -124,7 +124,7 @@ class MakingOrder(View):
         user.delete()
 
     def get(self, request):
-        form = MakingOrderForm()
+        form = MakingOrderForm(initial={'payment_method': Order.IN_CASH, 'delivery_option': Order.DELIVERY})
         context = {
             'title_html': 'Оформление заказа',
             'form': form,
