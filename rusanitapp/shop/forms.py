@@ -24,11 +24,6 @@ class ServicesForm(forms.Form):
 
 
 class MakingOrderForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['payment_method'].empty_label = 'Не выбрано'
-        self.fields['delivery_option'].empty_label = 'Не выбрано'
-
     class Meta:
         model = Order
         fields = ['recipient', 'phone_number', 'email', 'city', 'street', 'house_number',
@@ -42,4 +37,6 @@ class MakingOrderForm(forms.ModelForm):
             'house_number': forms.TextInput(attrs={'placeholder': 'Дом'}),
             'flat': forms.TextInput(attrs={'placeholder': 'Квартира'}),
             'comment': forms.Textarea(attrs={'placeholder': 'Комментарий', 'rows': 3}),
+            'payment_method': forms.RadioSelect(attrs={'type': 'radio'}),
+            'delivery_option': forms.RadioSelect(attrs={'type': 'radio'}),
         }
