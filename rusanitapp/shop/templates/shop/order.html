@@ -48,12 +48,22 @@
             </div>
             <div class="order-form-right">
                 <div class="novisible">
-                    <p><label for="{{ form.payment_method.id_for_label }}">{{ form.payment_method.label }}:</label></p>
-                    {{ form.payment_method }}
+                    <p><label>{{ form.payment_method.label }}:</label></p>
+                    {% for radio in form.payment_method %}
+                        <label for="{{ radio.id_for_label }}">
+                            {{ radio.choice_label }}
+                            <span class="radio">{{ radio.tag }}</span>
+                        </label>
+                    {% endfor %}
                 </div>
                 <div class="mt20 novisible">
-                    <p><label for="{{ form.delivery_option.id_for_label }}">{{ form.delivery_option.label }}:</label></p>
-                    {{ form.delivery_option }}
+                    <p><label>{{ form.delivery_option.label }}:</label></p>
+                    {% for radio in form.delivery_option %}
+                        <label for="{{ radio.id_for_label }}">
+                            {{ radio.choice_label }}
+                            <span class="radio">{{ radio.tag }}</span>
+                        </label>
+                    {% endfor %}
                 </div>
             </div>
         </form>
