@@ -165,9 +165,10 @@ class Order(models.Model):
     house_number = models.CharField(max_length=255, verbose_name='Дом')
     flat = models.CharField(max_length=255, verbose_name='Квартира')
     comment = models.TextField(blank=True, verbose_name='Комментарий')
-    payment_method = models.CharField(max_length=50, choices=PAY_METHOD, default=IN_CASH, verbose_name='Способ оплаты')
+    payment_method = models.CharField(max_length=50, choices=PAY_METHOD, default=IN_CASH,
+                                      verbose_name='Выберите способ оплаты')
     delivery_option = models.CharField(max_length=50, choices=RECEPTION_METHOD, default=DELIVERY,
-                                       verbose_name='Вариант доставки')
+                                       verbose_name='Выберите способ получения')
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
 
