@@ -47,23 +47,15 @@
                 </div>
             </div>
             <div class="order-form-right">
-                <div class="novisible">
-                    <p><label>{{ form.payment_method.label }}:</label></p>
-                    {% for radio in form.payment_method %}
-                        <label for="{{ radio.id_for_label }}">
-                            {{ radio.choice_label }}
-                            <span class="radio">{{ radio.tag }}</span>
-                        </label>
-                    {% endfor %}
+                <div class="">
+                    <p>Способ оплаты:</p>
+                    <a href="#popup_pay_method" class="popup-link">изменить</a>
+                    {% include 'shop/_popup_pay_method.html' %}
                 </div>
-                <div class="mt20 novisible">
-                    <p><label>{{ form.delivery_option.label }}:</label></p>
-                    {% for radio in form.delivery_option %}
-                        <label for="{{ radio.id_for_label }}">
-                            {{ radio.choice_label }}
-                            <span class="radio">{{ radio.tag }}</span>
-                        </label>
-                    {% endfor %}
+                <div class="">
+                    <p>Вариант доставки</p>
+                    <a href="#popup_delivery_option" class="popup-link">изменить</a>
+                    {% include 'shop/_popup_delivery_option.html' %}
                 </div>
             </div>
         </form>

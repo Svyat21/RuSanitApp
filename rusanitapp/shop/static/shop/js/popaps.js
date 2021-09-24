@@ -86,7 +86,6 @@ const popupLincs = document.querySelectorAll('.popup-link');
 const body = document.querySelector('body');
 const lockPadding = document.querySelectorAll('.lock-padding');
 const jqSelectbox = document.querySelectorAll('.novisible');
-// console.log(jqSelectbox)
 
 let unlock = true;
 
@@ -140,7 +139,6 @@ function popupClose(popupActive, doUnlock = true) {
         const jqSelectbox = document.querySelectorAll('.novisible');
         if (jqSelectbox) {
             jqSelectbox.forEach(function (value) {
-                console.log(value);
                 value.classList.remove('jq-hidden');
             });
         }
