@@ -6,6 +6,9 @@
 *::before{
     box-sizing: border-box;
 }
+hr{
+    border-top: 0.5px solid #989AA9;
+}
 a{
     text-decoration: none;
 }
@@ -127,6 +130,9 @@ body{
 }
 .mb30{
     margin-bottom: 30px;
+}
+.mb40{
+    margin-bottom: 40px;
 }
 .ml20{
     margin-left: 20px;
@@ -421,12 +427,25 @@ body.lock{
 }
 .order-form-right{
     width: 608px;
+    height: 308px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 35px rgb(152 154 169 / 20%);
 }
-.order-form-right label{
-    margin-bottom: 10px;
+.order-form-right p{
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+}
+.order-form-right-contain{
+    width: 528px;
+    height: 228px;
 }
 .parent-input input{
     width: 100%;
@@ -493,6 +512,37 @@ body.lock{
     color: white;
     text-decoration: none;
 }
+.radio-res-top{
+    display: flex;
+    justify-content: space-between;
+}
+.radio-res-bottom{
+    display: flex;
+    align-items: center;
+}
+.pay_result{
+    background-image: url(../images/IN_CASH.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+    height: 30px;
+}
+.delivery_result{
+    background-image: url(../images/DELIVERY.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+    height: 30px;
+}
+.radio-res-bottom p{
+    margin-left: 40px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 155%;
+    color: var(--color-light-grey);
+}
+
+
+
 
 @media (max-width:1250px){
     .right-nav {

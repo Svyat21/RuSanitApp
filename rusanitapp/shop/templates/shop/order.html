@@ -47,15 +47,28 @@
                 </div>
             </div>
             <div class="order-form-right">
-                <div class="">
-                    <p>Способ оплаты:</p>
-                    <a href="#popup_pay_method" class="popup-link">изменить</a>
-                    {% include 'shop/_popup_pay_method.html' %}
-                </div>
-                <div class="">
-                    <p>Вариант доставки</p>
-                    <a href="#popup_delivery_option" class="popup-link">изменить</a>
-                    {% include 'shop/_popup_delivery_option.html' %}
+                <div class="order-form-right-contain">
+                    <div class="pay">
+                        <div class="radio-res-top">
+                            <p>Способ оплаты:</p>
+                            <a href="#popup_pay_method" class="buttom-standart popup-link">Изменить</a>
+                        </div>
+                        <div class="pay_result radio-res-bottom">
+                            <p>Наличные</p>
+                        </div>
+                        {% include 'shop/_popup_pay_method.html' %}
+                    </div>
+                    <hr class="mt40 mb40">
+                    <div class="delivery">
+                        <div class="radio-res-top">
+                            <p>Вариант доставки:</p>
+                            <a href="#popup_delivery_option" class="buttom-standart popup-link">Изменить</a>
+                        </div>
+                        <div class="delivery_result radio-res-bottom">
+                            <p>Самовывоз</p>
+                        </div>
+                        {% include 'shop/_popup_delivery_option.html' %}
+                    </div>
                 </div>
             </div>
         </form>
