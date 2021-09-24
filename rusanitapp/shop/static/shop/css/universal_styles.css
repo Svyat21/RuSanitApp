@@ -526,11 +526,23 @@ body.lock{
     background-position: left;
     height: 30px;
 }
+.pay_result_cash{
+    background-image: url(../images/IN_CASH.svg);
+}
+.pay_result_transfer{
+    background-image: url(../images/MONEY_TRANSFER.svg);
+}
 .delivery_result{
     background-image: url(../images/DELIVERY.svg);
     background-repeat: no-repeat;
     background-position: left;
     height: 30px;
+}
+.delivery_result_delivery{
+    background-image: url(../images/DELIVERY.svg);
+}
+.pickup_result_pickup{
+    background-image: url(../images/PICKUP.svg);
 }
 .radio-res-bottom p{
     margin-left: 40px;
