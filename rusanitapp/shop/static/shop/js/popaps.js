@@ -80,6 +80,17 @@ function priceStr(str) {
     }
     return price_str.reverse().join('');
 }
+const burgerOpen = document.querySelector('.main-menu');
+const burger = document.querySelector('.burger');
+const burgerClose = document.querySelector('#burger-close');
+burger.addEventListener('click', function () {
+    burgerOpen.classList.toggle('burger-open');
+    burgerClose.classList.toggle('burger-close');
+});
+burgerClose.addEventListener('click', function () {
+    burgerOpen.classList.toggle('burger-open');
+    burgerClose.classList.toggle('burger-close');
+});
 
 
 const popupLincs = document.querySelectorAll('.popup-link');
