@@ -558,16 +558,15 @@ body.lock{
 
 @media (max-width:1250px){
     .right-nav {
-        margin-right: 0;
+        margin-right: 16px;
     }
     .left-f {
-        margin-left: 0;
+        margin-left: 16px;
     }
     .left-nav {
-        margin-left: 0;
+        margin-left: 16px;
     }
 }
-
 @media (max-width:1180px){
     .card-list {
         margin-top: 50px;
@@ -585,5 +584,10 @@ body.lock{
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+}
+@media (max-width:768px){
+    .right-nav {
+        margin-right: 56px;
     }
 }
