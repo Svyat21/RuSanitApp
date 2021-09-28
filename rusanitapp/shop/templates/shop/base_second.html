@@ -3,6 +3,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title_html }}</title>
     <link rel="icon" href="{% static 'shop/images/favicon.png' %}" type="image/x-icon">
     <link rel="shortcut icon" href="{% static 'shop/images/favicon.png' %}" type="image/x-icon">
@@ -17,25 +18,27 @@
     <link type="text/css" rel="stylesheet" href="{% static 'shop/css/main.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'shop/css/universal_styles.css' %}">
 </head>
-<body>
-    <header class="main-container flex flex-center">
-        <nav class="contain flex flex-space-between">
+<body class="main-container">
+    <header class="main_header_container">
+        <nav class="nav_contain">
             <a class="left-nav" href="{% url 'home' %}">
-                <div class="logo">
+                <div class="base_second_logo">
                     <p class="font-logo">RuSanit</p>
                 </div>
             </a>
-            <div class="main-menu flex flex-space-between">
+            <div class="base_second_menu">
                 <a class="font-nav" href="{% url 'home' %}">Главная</a>
                 <a class="font-nav" href="{% url 'home' %}">Доставка</a>
                 <a class="font-nav" href="{% url 'home' %}">Контакты</a>
                 <div><a class="font-nav" href="{% url 'basket' %}">Корзина</a></div>
             </div>
-            <div href="#popup" class="call right-nav popup-link">
+            <div href="#popup" class="base_second_call right-nav popup-link">
                 <div>
                     <p class="font-button">Заказать звонок</p>
                 </div>
             </div>
+            <div class="burger_second"></div>
+            <div id="burger-close" class=""></div>
         </nav>
     </header>
     <div class="flex flex-center">
