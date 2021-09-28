@@ -591,6 +591,7 @@ body.lock{
     border-radius: 10px;
     margin-bottom: 15px;
     padding-left: 14px;
+    font: Open Sans;
 }
 .parent-input textarea{
     width: 100%;
@@ -601,6 +602,8 @@ body.lock{
     margin-bottom: 15px;
     padding-left: 14px;
     padding-top: 14px;
+    padding-left: 5px;
+    font: Open Sans;
 }
 .addres-form{
     width: 245px;
