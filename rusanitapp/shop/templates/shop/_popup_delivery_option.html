@@ -1,0 +1,26 @@
+<div id="popup_delivery_option" class="popup">
+    <div class="popup-body">
+        <div class="popup-content-delivery popup-content">
+            <div class="popup-delivery-contain">
+                <div class="popup-delivery-close popup-close close-popup"></div>
+                <h1 class="h2-style mb30">{{ form.delivery_option.label }}</h1>
+                {% for radio in form.delivery_option %}
+                    <label for="{{ radio.id_for_label }}">
+                        <div class="radio mt15">
+                            {% if forloop.last %}
+                                <div class="last radio-select">
+                                    <p class="p-style">{{ radio.choice_label }}</p>
+                                </div>
+                            {% else %}
+                                <div class="first radio-select">
+                                    <p class="p-style">{{ radio.choice_label }}</p>
+                                </div>
+                            {% endif %}
+                            {{ radio.tag }}
+                        </div>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

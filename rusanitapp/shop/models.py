@@ -7,16 +7,6 @@ product_tag = [
     ('new-product', 'Новинка'),
 ]
 
-pay_method = [
-    ('Наличными', 'Оплата наличными'),
-    ('Переводом', 'Денежным переводом'),
-]
-
-reception_method = [
-    ('Доставка', 'Доставка заказа до места получения'),
-    ('Самовывоз', 'Самовывоз кастамаровский 3стр4'),
-]
-
 
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name='Наименование')
@@ -52,6 +42,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Станция'
         verbose_name_plural = 'Станции'
+        ordering = ['price']
 
 
 class SizeProduct(models.Model):
@@ -66,6 +57,7 @@ class SizeProduct(models.Model):
     class Meta:
         verbose_name = 'Размеры станции'
         verbose_name_plural = 'Размеры станции'
+        ordering = ['product']
 
 
 class Montage(models.Model):
@@ -155,6 +147,18 @@ class Customer(models.Model):
 
 
 class Order(models.Model):
+    IN_CASH = 'Наличными'
+    MONEY_TRANSFER = 'Переводом'
+    PAY_METHOD = [
+        (IN_CASH, 'Оплата наличными'),
+        (MONEY_TRANSFER, 'Денежным переводом'),
+    ]
+    DELIVERY = 'Доставка'
+    PICKUP = 'Самовывоз'
+    RECEPTION_METHOD = [
+        (DELIVERY, 'Доставка заказа до места получения'),
+        (PICKUP, 'Самовывоз'),
+    ]
     recipient = models.CharField(max_length=255, verbose_name='Получатель')
     phone_number = models.CharField(max_length=255, verbose_name='Телефон')
     email = models.CharField(max_length=255, verbose_name='email')
@@ -163,8 +167,10 @@ class Order(models.Model):
     house_number = models.CharField(max_length=255, verbose_name='Дом')
     flat = models.CharField(max_length=255, verbose_name='Квартира')
     comment = models.TextField(blank=True, verbose_name='Комментарий')
-    payment_method = models.CharField(max_length=255, choices=pay_method, verbose_name='Способ оплаты')
-    delivery_option = models.CharField(max_length=255, choices=reception_method, verbose_name='Вариант доставки')
+    payment_method = models.CharField(max_length=50, choices=PAY_METHOD, default=IN_CASH,
+                                      verbose_name='Выберите способ оплаты')
+    delivery_option = models.CharField(max_length=50, choices=RECEPTION_METHOD, default=DELIVERY,
+                                       verbose_name='Выберите способ получения')
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
 
@@ -185,3 +191,8 @@ class PhotoAlbum(models.Model):
     photo = models.ImageField(upload_to=f'photos/', verbose_name='Главное фото')
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     product = models.ForeignKey('Product', null=True, on_delete=models.SET_NULL, verbose_name='Станция')
+
+    class Meta:
+        verbose_name = 'Фотоальбом'
+        verbose_name_plural = 'Фотоальбомы'
+        ordering = ['product']

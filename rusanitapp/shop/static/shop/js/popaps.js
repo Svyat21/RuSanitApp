@@ -80,13 +80,38 @@ function priceStr(str) {
     }
     return price_str.reverse().join('');
 }
+const burgerOpen = document.querySelector('.main-menu');
+const burgerSecondOpen = document.querySelector('.base_second_menu');
+const burger = document.querySelector('.burger');
+const burgerSecond = document.querySelector('.burger_second');
+const burgerClose = document.querySelector('#burger-close');
+if (burger) {
+    burger.addEventListener('click', function () {
+        burgerOpen.classList.toggle('burger-open');
+        burgerClose.classList.toggle('burger-close');
+    });
+} else {
+     burgerSecond.addEventListener('click', function () {
+        burgerSecondOpen.classList.toggle('burger-open');
+        burgerClose.classList.toggle('burger-close');
+        burgerSecond.classList.add('burger_second_none')
+    });
+}
+burgerClose.addEventListener('click', function () {
+    if (burgerOpen) {
+        burgerOpen.classList.toggle('burger-open');
+    } else {
+        burgerSecondOpen.classList.toggle('burger-open');
+        burgerSecond.classList.remove('burger_second_none');
+    }
+    burgerClose.classList.toggle('burger-close');
+});
 
 
 const popupLincs = document.querySelectorAll('.popup-link');
 const body = document.querySelector('body');
 const lockPadding = document.querySelectorAll('.lock-padding');
 const jqSelectbox = document.querySelectorAll('.novisible');
-// console.log(jqSelectbox)
 
 let unlock = true;
 
@@ -140,7 +165,6 @@ function popupClose(popupActive, doUnlock = true) {
         const jqSelectbox = document.querySelectorAll('.novisible');
         if (jqSelectbox) {
             jqSelectbox.forEach(function (value) {
-                console.log(value);
                 value.classList.remove('jq-hidden');
             });
         }

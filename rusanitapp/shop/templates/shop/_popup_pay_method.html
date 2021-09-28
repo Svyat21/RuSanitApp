@@ -1,0 +1,26 @@
+<div id="popup_pay_method" class="popup">
+    <div class="popup-body">
+        <div class="popup-content-pay popup-content">
+            <div class="popup-pay-contain">
+                <div class="popup-pay-close popup-close close-popup"></div>
+                <h1 class="h2-style mb30">{{ form.payment_method.label }}</h1>
+                {% for radio in form.payment_method %}
+                    <label for="{{ radio.id_for_label }}">
+                        <div class="radio mt15">
+                            {% if forloop.last %}
+                                <div class="last radio-select">
+                                    <p class="p-style">{{ radio.choice_label }}</p>
+                                </div>
+                            {% else %}
+                                <div class="first radio-select">
+                                    <p class="p-style">{{ radio.choice_label }}</p>
+                                </div>
+                            {% endif %}
+                            {{ radio.tag }}
+                        </div>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

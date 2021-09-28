@@ -105,3 +105,10 @@
     background-position: center;
     z-index: 1;
 }
+.jq-radio.checked{
+    background-image: url(../images/selected.svg);
+    background-size: contain;
+    margin-right: 20px;
+    width: 22px;
+    height: 22px;
+}

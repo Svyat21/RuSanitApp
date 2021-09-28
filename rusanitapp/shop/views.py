@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
-from shop.models import Product, SizeProduct, PhotoAlbum, Specifications, Services, Customer
+from shop.models import Product, SizeProduct, PhotoAlbum, Specifications, Services, Customer, Order
 from shop.forms import ServicesForm, MakingOrderForm
 from django.core.mail import send_mail
 from django.core import serializers
@@ -124,7 +124,7 @@ class MakingOrder(View):
         user.delete()
 
     def get(self, request):
-        form = MakingOrderForm()
+        form = MakingOrderForm(initial={'payment_method': Order.IN_CASH, 'delivery_option': Order.DELIVERY})
         context = {
             'title_html': 'Оформление заказа',
             'form': form,
@@ -171,7 +171,6 @@ class ShopHome(ListView):
         user = Customer.objects.filter(user_ip=ip)
         if user:
             count_prod = Product.objects.filter(customer=user[0])
-            print(f'\n{count_prod}\n')
             if count_prod:
                 return self.get_count_prods(user[0], count_prod)
         return None
@@ -214,8 +213,12 @@ class Basket(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_html'] = 'Корзина'
-        context['prod_list'] = self.get_services()[0]
-        context['full_price'] = self.get_services()[1]
+        products_shopping_cart = self.get_services()
+        if not products_shopping_cart[0]:
+            context['prod_list'] = None
+        else:
+            context['prod_list'] = products_shopping_cart[0]
+            context['full_price'] = products_shopping_cart[1]
         return context
 
     def get_user(self):

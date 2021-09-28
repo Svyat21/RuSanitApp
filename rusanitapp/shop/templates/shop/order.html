@@ -41,21 +41,33 @@
                     <p><label for="{{ form.comment.id_for_label }}"></label></p>
                     {{ form.comment }}
                 </div>
-                <div class="mt40">
-                    <a class="buttom-standart" href="{% url 'basket' %}">Назад</a>
-                    <button class="buttom-order ml20" type="submit">Оформить заказ</button>
-                </div>
             </div>
             <div class="order-form-right">
-                <div class="novisible">
-                    <p><label for="{{ form.payment_method.id_for_label }}">{{ form.payment_method.label }}:</label></p>
-                    {{ form.payment_method }}
-                </div>
-                <div class="mt20 novisible">
-                    <p><label for="{{ form.delivery_option.id_for_label }}">{{ form.delivery_option.label }}:</label></p>
-                    {{ form.delivery_option }}
+                <div class="order-form-right-contain">
+                    <div class="pay">
+                        <div class="radio-res-top">
+                            <p>Способ оплаты:</p>
+                            <a href="#popup_pay_method" class="buttom-standart popup-link">Изменить</a>
+                        </div>
+                        <div class="pay_result radio-res-bottom">
+                            <p>Наличными</p>
+                        </div>
+                        {% include 'shop/_popup_pay_method.html' %}
+                    </div>
+                    <hr class="mt40 mb40">
+                    <div class="delivery">
+                        <div class="radio-res-top">
+                            <p>Вариант доставки:</p>
+                            <a href="#popup_delivery_option" class="buttom-standart popup-link">Изменить</a>
+                        </div>
+                        <div class="delivery_result radio-res-bottom">
+                            <p>Доставка</p>
+                        </div>
+                        {% include 'shop/_popup_delivery_option.html' %}
+                    </div>
                 </div>
             </div>
+            <button class="buttom-order ml20" type="submit">Оформить заказ</button>
         </form>
     </div>
 {% endblock %}
