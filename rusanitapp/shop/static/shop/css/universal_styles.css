@@ -246,6 +246,7 @@ body{
         margin-top: 0px;
     }
     .burger-close{
+        z-index: 5;
         position: absolute;
         top: 32px;
         right: 32px;
@@ -256,6 +257,7 @@ body{
         height: 40px;
     }
     .burger-open{
+        z-index: 5;
         background-color: white;
         padding: 80px 0px 84px 0px;
         width: 100%;
@@ -623,6 +625,9 @@ body.lock{
     background-color: var(--color-highlighting-orange);
 }
 .buttom-order{
+    position: absolute;
+    bottom: 20px;
+    right: 0;
     width: 180px;
     height: 45px;
     appearance: none;
@@ -640,6 +645,7 @@ body.lock{
 }
 
 .form-contain{
+    position: relative;
     display: flex;
     justify-content: space-between;
 }
@@ -723,6 +729,11 @@ body.lock{
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    .buttom-order{
+        position: absolute;
+        bottom: -100px;
+        right: unset;
     }
 }
 @media (max-width:768px){

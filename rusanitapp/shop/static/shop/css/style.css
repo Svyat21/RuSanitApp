@@ -145,6 +145,7 @@ body{
         background-image: url(../images/basket-black.svg);
     }
     .burger-close{
+        z-index: 5;
         position: absolute;
         top: 32px;
         right: 32px;
@@ -155,6 +156,7 @@ body{
         height: 40px;
     }
     .burger-open{
+        z-index: 5;
         background-color: white;
         padding: 80px 0px 84px 0px;
         width: 100%;
