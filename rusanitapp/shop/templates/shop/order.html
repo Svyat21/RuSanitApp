@@ -41,10 +41,6 @@
                     <p><label for="{{ form.comment.id_for_label }}"></label></p>
                     {{ form.comment }}
                 </div>
-                <div class="mt40">
-                    <a class="buttom-standart" href="{% url 'basket' %}">Назад</a>
-                    <button class="buttom-order ml20" type="submit">Оформить заказ</button>
-                </div>
             </div>
             <div class="order-form-right">
                 <div class="order-form-right-contain">
@@ -71,6 +67,7 @@
                     </div>
                 </div>
             </div>
+            <button class="buttom-order ml20" type="submit">Оформить заказ</button>
         </form>
     </div>
 {% endblock %}
