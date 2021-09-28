@@ -42,6 +42,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Станция'
         verbose_name_plural = 'Станции'
+        ordering = ['price']
 
 
 class SizeProduct(models.Model):
@@ -56,6 +57,7 @@ class SizeProduct(models.Model):
     class Meta:
         verbose_name = 'Размеры станции'
         verbose_name_plural = 'Размеры станции'
+        ordering = ['product']
 
 
 class Montage(models.Model):
@@ -189,3 +191,8 @@ class PhotoAlbum(models.Model):
     photo = models.ImageField(upload_to=f'photos/', verbose_name='Главное фото')
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     product = models.ForeignKey('Product', null=True, on_delete=models.SET_NULL, verbose_name='Станция')
+
+    class Meta:
+        verbose_name = 'Фотоальбом'
+        verbose_name_plural = 'Фотоальбомы'
+        ordering = ['product']
