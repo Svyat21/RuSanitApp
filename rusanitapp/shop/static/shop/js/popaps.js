@@ -81,14 +81,29 @@ function priceStr(str) {
     return price_str.reverse().join('');
 }
 const burgerOpen = document.querySelector('.main-menu');
+const burgerSecondOpen = document.querySelector('.base_second_menu');
 const burger = document.querySelector('.burger');
+const burgerSecond = document.querySelector('.burger_second');
 const burgerClose = document.querySelector('#burger-close');
-burger.addEventListener('click', function () {
-    burgerOpen.classList.toggle('burger-open');
-    burgerClose.classList.toggle('burger-close');
-});
+if (burger) {
+    burger.addEventListener('click', function () {
+        burgerOpen.classList.toggle('burger-open');
+        burgerClose.classList.toggle('burger-close');
+    });
+} else {
+     burgerSecond.addEventListener('click', function () {
+        burgerSecondOpen.classList.toggle('burger-open');
+        burgerClose.classList.toggle('burger-close');
+        burgerSecond.classList.add('burger_second_none')
+    });
+}
 burgerClose.addEventListener('click', function () {
-    burgerOpen.classList.toggle('burger-open');
+    if (burgerOpen) {
+        burgerOpen.classList.toggle('burger-open');
+    } else {
+        burgerSecondOpen.classList.toggle('burger-open');
+        burgerSecond.classList.remove('burger_second_none');
+    }
     burgerClose.classList.toggle('burger-close');
 });
 
