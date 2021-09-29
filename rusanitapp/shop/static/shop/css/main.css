@@ -97,6 +97,8 @@ body{
 }
 
 
+/* Фотоальбом станции */
+
 .container1180{
     width: 1180px;
     margin: 0 auto;
@@ -143,6 +145,29 @@ body{
   height: 100%;
   object-fit: cover;
 }
+@media (max-width:414px){
+    .photo {
+        position: relative;
+        justify-content: center;
+        width: 100%;
+        height: 300px;
+        margin-bottom: 120px;
+    }
+    .small {
+        position: absolute;
+        bottom: -80px;
+        flex-direction: row;
+        width: 100%;
+        height: 70px;
+    }
+    .small a {
+        width: 65px;
+        height: 70px;
+    }
+}
+
+
+
 .content-select{
     width: 580px;
     height: 448px;
@@ -168,7 +193,11 @@ body{
 .submit:hover {
     background: var(--color-highlighting-orange)
 }
+
+
+
 /* form-lable */
+
 .form{
   display: grid;
   grid-template-columns: 50% 50%;
@@ -220,7 +249,11 @@ body{
 .plus:hover{
     background-image: url(../images/plus_after.svg);
 }
-/* form-lable */
+
+
+
+
+
 .text p{
     margin-bottom: 30px;
 }
@@ -262,7 +295,9 @@ body{
     width: 280px;
 }
 
+
 /* -------Корзина------- */
+
 .prod-basket-main{
     width: 100%;
     height: 320px;
