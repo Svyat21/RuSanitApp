@@ -167,6 +167,7 @@ body{
 }
 
 
+/* form-lable */
 
 .content-select{
     width: 580px;
@@ -193,11 +194,6 @@ body{
 .submit:hover {
     background: var(--color-highlighting-orange)
 }
-
-
-
-/* form-lable */
-
 .form{
   display: grid;
   grid-template-columns: 50% 50%;
@@ -249,8 +245,28 @@ body{
 .plus:hover{
     background-image: url(../images/plus_after.svg);
 }
-
-
+@media (max-width:1180px){
+    .description {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width:414px){
+    .content-select {
+        width: 100%;
+        height: unset;
+    }
+    .content-select h1 {
+        text-c
+    }
+    .form {
+        grid-template-columns: 100%;
+        justify-items: center;
+    }
+}
 
 
 
@@ -293,6 +309,11 @@ body{
 }
 .el div{
     width: 280px;
+}
+@media (max-width:414px){
+    .el div{
+        width: 130px;
+    }
 }
 
 
@@ -402,12 +423,5 @@ body{
     }
     .small-contain {
         width: 95%;
-    }
-    .description {
-        margin-top: 30px;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        align-items: center;
     }
 }
