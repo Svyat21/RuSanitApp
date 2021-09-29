@@ -5,13 +5,13 @@
         {% if prod_list %}
             <h2 class="h1-style mt50">Корзина</h2>
             {% for prod in prod_list %}
-                <div class="prod-basket-main flex flex-center align-items-center">
-                    <div class="small-contain flex flex-space-between">
+                <div class="prod-basket-main">
+                    <div class="small-contain">
                         <div class="right-prod">
                             <a href="{{ prod.0.get_absolute_url }}">
                                 <h2 class="h2-style">{{ prod.0.name }}</h2>
                             </a>
-                            <div class="bascet-servise flex">
+                            <div class="bascet-servise">
                                 <div class="basket-prod-photo img-sm">
                                     <img src="{{ prod.0.main_photo.url }}">
                                 </div>
@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="left-prod flex">
+                        <div class="left-prod">
                             <a href="{{ prod.1.get_absolute_url }}"><div class="delete"></div></a>
                             <h1 class="full-price">{{ prod.2 }} руб.</h1>
                             <h1 class="prod-count">{{ prod.1.count }} шт.</h1>
