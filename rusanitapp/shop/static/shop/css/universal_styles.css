@@ -780,3 +780,8 @@ body.lock{
         margin-right: 56px;
     }
 }
+@media (max-width:414px){
+    .mt250 {
+        margin-top: 100px;
+    }
+}

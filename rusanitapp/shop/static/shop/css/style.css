@@ -472,6 +472,64 @@ body{
 }
 
 
+/* Преимущества */
+/* О нас */
+/* Доставка */
+
+.h1{
+    color: #2D2D2F;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 120%;
+}
+.advantages_contain{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.advantages{
+    width: 580px;
+    height: 427px;
+    background-image: url(../images/advantages.jpg);
+}
+.about{
+    width: 580px;
+    height: 427px;
+    background-image: url(../images/about.jpg);
+}
+.delivery{
+    width: 580px;
+    height: 427px;
+    background-image: url(../images/truck.jpg);
+}
+.contacts-content{
+    margin-top: 250px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+.p-index{
+    width: 480px;
+    margin-right: 100px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+    color: var(--color-black);
+}
+.p-index-left{
+    width: 480px;
+    margin-left: 100px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+    color: var(--color-black);
+}
+.contacts{
+    height: 600px;
+    position: relative;
+}
 .contact-text{
     display: flex;
     justify-content: space-around;
@@ -503,58 +561,61 @@ body{
     font-size: 18px;
     line-height: 150%;
 }
-
-
-
-.h1{
-    color: #2D2D2F;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 50px;
-    line-height: 120%;
+@media (max-width:768px){
+    .p-index {
+        margin-right: 16px;
+    }
+    .p-index-left {
+        margin-left: 16px;
+    }
 }
-.advantages{
-    width: 580px;
-    height: 427px;
-    background-image: url(../images/advantages.jpg);
-}
-.about{
-    width: 580px;
-    height: 427px;
-    background-image: url(../images/about.jpg);
-}
-.delivery{
-    width: 580px;
-    height: 427px;
-    background-image: url(../images/truck.jpg);
-}
-.contacts-content{
-    margin-top: 250px;
-    max-width: 1440px;
-    margin: 0 auto;
-}
-.contacts{
-    /* max-width: 1180px; */
-    height: 600px;
-    position: relative;
-}
-.p-index{
-    width: 480px;
-    margin-right: 100px;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 150%;
-    color: var(--color-black);
-}
-.p-index-left{
-    width: 480px;
-    margin-left: 100px;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 150%;
-    color: var(--color-black);
+@media (max-width:414px){
+    .advantages_contain{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .advantages_contain .mt50 {
+        margin-top: 0px;
+    }
+    .advantages_contain .ml10 {
+        margin-left: 0px;
+    }
+    .p-index {
+        margin-right: 0px;
+        margin-bottom: 30px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 140%;
+    }
+    .p-index-left {
+        margin-left: 0px;
+        margin-top: 30px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 140%;
+    }
+    .advantages {
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 300px;
+    }
+    .about{
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 300px;
+    }
+    .delivery{
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 300px;
+    }
 }
 
 
@@ -642,11 +703,6 @@ body{
 }
 
 
-@media (max-width:768px){
-    .p-index {
-        margin-right: 16px;
-    }
-}
 @media (max-width:1440px){
     .contain{
         width: 100%;
@@ -680,5 +736,13 @@ body{
 @media (max-width:768px){
     .right-nav {
         margin-right: 56px;
+    }
+}
+@media (max-width:414px){
+    .h1 {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 120%;
     }
 }
