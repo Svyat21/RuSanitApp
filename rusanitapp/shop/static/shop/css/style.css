@@ -283,6 +283,8 @@ body{
 }
 
 
+/* Каталог */
+
 .button3{
     color: white;
     padding: 15px 21px;
@@ -402,13 +404,6 @@ body{
 .lower-part p{
     margin-top: 12.5px;
 }
-/* .still{
-    display: flex;
-    justify-content: center;
-    margin: 50px auto 150px;
-} */
-
-
 .still{
     display: flex;
     margin: 50px auto 0px auto;
@@ -461,6 +456,22 @@ body{
 .roll-up p{
     color: white;
 }
+@media (max-width:1180px){
+    .card-list {
+        grid-template-columns: 50% 50%;
+    }
+}
+@media (max-width:414px){
+    .content {
+        max-width: 93%;
+        margin: 0 auto;
+    }
+    .card-list {
+        grid-template-columns: 100%;
+    }
+}
+
+
 .contact-text{
     display: flex;
     justify-content: space-around;
@@ -653,11 +664,6 @@ body{
     }
 }
 @media (max-width:1180px){
-    .card-list {
-        margin-top: 50px;
-        display: grid;
-        grid-template-columns: 50% 50%;
-    }
     .form-contain{
         display: flex;
         flex-direction: column;
