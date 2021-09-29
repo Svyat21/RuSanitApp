@@ -474,6 +474,40 @@ footer{
 body.lock{
     overflow: hidden;
 }
+@media (max-width:414px){
+    .popup{
+        width: 414px;
+    }
+    .popup-body{
+        width: 100%;
+        padding: 0;
+    }
+    .popup-content{
+        width: 360px;
+        height: 526px;
+    }
+    .popup-contain{
+        width: 328px;
+        height: 494px;
+    }
+    .input-call {
+        padding-left: 0px;
+        text-align: center;
+    }
+    .check-lable {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .submit-popup {
+        margin: 50px 60px;
+    }
+    .popup .h2-style {
+        text-align: center;
+    }
+    .popup-body p {
+        text-align: center;
+    }
+}
 
 
 .popup-content-pay{
