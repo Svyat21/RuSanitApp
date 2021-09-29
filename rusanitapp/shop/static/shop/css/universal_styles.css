@@ -279,6 +279,18 @@ body{
         margin-left: 56px;
     }
 }
+@media (max-width:414px){
+    .base_second_call{
+        width: 56px;
+    }
+    .base_second_call .font-button{
+        display: none;
+    }
+    .base_second_call div {
+        width: 30px;
+        height: 20px;
+    }
+}
 
 .logo-f{
     margin-top: 27px;
