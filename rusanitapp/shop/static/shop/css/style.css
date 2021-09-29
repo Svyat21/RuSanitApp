@@ -140,6 +140,10 @@ body{
     .main-menu a{
         color: #2D2D2F;
         margin-top: 0px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 140%;
     }
     .main-menu .basc{
         background-image: url(../images/basket-black.svg);
@@ -175,11 +179,26 @@ body{
         margin-left: 56px;
     }
 }
+@media (max-width:414px){
+    .main-container {
+        background-image: url(../images/background_modile.svg);
+    }
+    .call{
+        width: 56px;
+    }
+    .call p{
+        display: none;
+    }
+    .nav{
+        margin-bottom: 213px;
+    }
+}
 
 
 /* ----- heder intro ----- */
 
 .intro-contain{
+    position: relative;
     display: flex;
     justify-content: space-between;
 }
@@ -240,6 +259,26 @@ body{
         font-size: 18px;
         line-height: 140%;
         color: white;
+    }
+}
+@media (max-width:414px){
+    .intro-contain {
+        justify-content: center;
+    }
+    .intro-photo{
+        position: absolute;
+        top: -213px;
+        width: 328px;
+        height: 198px;
+    }
+    .intro-text{
+        min-width: unset;
+        width: 328px;
+        margin-left: 0;
+    }
+    .intro-p{
+        margin-top: 16px;
+        margin-bottom: 50px;
     }
 }
 
