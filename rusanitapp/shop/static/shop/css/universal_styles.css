@@ -508,6 +508,16 @@ body.lock{
         text-align: center;
     }
 }
+@media (max-width:411px){
+    .popup{
+        width: 411px;
+    }
+}
+@media (max-width:360px){
+    .popup{
+        width: 360px;
+    }
+}
 
 
 .popup-content-pay{
@@ -747,11 +757,6 @@ body.lock{
     }
 }
 @media (max-width:1180px){
-    .card-list {
-        margin-top: 50px;
-        display: grid;
-        grid-template-columns: 50% 50%;
-    }
     .form-contain{
         display: flex;
         flex-direction: column;
