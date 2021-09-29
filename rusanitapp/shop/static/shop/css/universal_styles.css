@@ -313,6 +313,16 @@ footer{
     height: 154px;
     background-color: var(--color-black);
 }
+.foter_contain{
+    display: flex;
+    justify-content: center;
+}
+.foter_nav_contain{
+    width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
 .footer-call{
     margin-top: 20px;
     background-color: white;
@@ -331,7 +341,9 @@ footer{
 .footer-center p{
     color: white;
 }
-.wid165{
+.foter_social_contain{
+    display: flex;
+    justify-content: space-between;
     width: 165px;
     margin-top: 69px;
 }
@@ -359,6 +371,9 @@ footer{
     background-image: url(../images/insta.svg);
 }
 @media (max-width:768px){
+    .foter_nav_contain {
+        width: 100%;
+    }
     .display-line-left {
         align-items: center;
         flex-direction: column;
@@ -367,6 +382,45 @@ footer{
     .display-line-left a {
         margin-bottom: 5px;
         margin-left: 10px;
+    }
+}
+@media (max-width:414px){
+    footer{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .foter_nav_contain{
+        width: 95%;
+        flex-direction: column;
+        align-items: center;
+    }
+    .display-line-left {
+        flex-direction: row;
+    }
+    .display-line-left a {
+        margin-right: 10px;
+    }
+    .display-column-left {
+        flex-direction: row;
+    }
+    .display-column-left p{
+        margin-right: 10px;
+    }
+    .foter_nav_contain .left-f{
+        margin-left: 0px;
+    }
+    .foter_nav_contain .logo-f {
+        margin-top: 0;
+    }
+    .foter_nav_contain .right-nav {
+        margin-right: 0;
+    }
+    .foter_social_contain{
+        width: unset;
+        margin-top: 0;
+    }
+    .foter_social_contain div{
+        margin-right: 10px;
     }
 }
 
