@@ -605,11 +605,42 @@ body{
     line-height: 155%;
     color: var(--color-light-grey);
 }
-@media (max-width:414px){
-    
+@media (max-width:1180px){
+    .form-contain{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .order-form-right {
+        margin-top: 20px;
+        width: 608px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .buttom-order{
+        position: absolute;
+        bottom: -100px;
+        right: unset;
+    }
 }
-
-
+@media (max-width:414px){
+    .order-form-left{
+        width: 100%;
+    }
+    .addres-form {
+        width: 49%;
+    }
+    .order-form-right {
+        width: 100%;
+    }
+    .buttom-order.ml20 {
+        margin-left: unset;
+    }
+    .order-form-right-contain {
+        width: 90%;
+    }
+}
 @media (max-width:1250px){
     .right-nav {
         margin-right: 0;
