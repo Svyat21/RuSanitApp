@@ -282,6 +282,9 @@ body{
     .left-nav {
         margin-left: 56px;
     }
+    .base_second_menu div {
+        width: 100px;
+    }
 }
 @media (max-width:414px){
     .base_second_call{
@@ -371,6 +374,11 @@ footer{
 .foter-a:hover{
     color: var(--color-gray);
 }
+.display-line-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .fb{
     width: 20px;
     height: 19.88px;
@@ -391,6 +399,7 @@ footer{
         width: 100%;
     }
     .display-line-left {
+        display: flex;
         align-items: center;
         flex-direction: column;
         justify-content: center;

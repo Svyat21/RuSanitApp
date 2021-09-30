@@ -460,6 +460,10 @@ body{
     .card-list {
         grid-template-columns: 50% 50%;
     }
+    .content {
+        max-width: 95%;
+        margin: 0 auto;
+    }
 }
 @media (max-width:414px){
     .content {

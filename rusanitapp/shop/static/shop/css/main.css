@@ -98,11 +98,15 @@ body{
 
 
 /* Фотоальбом станции */
-
+.product_container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+}
 .container1180{
     width: 1180px;
     margin: 0 auto;
-    margin-bottom: 200px;
+    min-height: 85vh;
 }
 .description{
     margin-top: 30px;
@@ -315,6 +319,9 @@ body{
 @media (max-width:414px){
     .el div{
         width: 130px;
+    }
+    .specifications p {
+        font-size: 16px;
     }
 }
 
@@ -557,6 +564,7 @@ body{
     position: relative;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 250px;
 }
 .display-line-left{
     display: flex;
