@@ -140,6 +140,10 @@ body{
     .main-menu a{
         color: #2D2D2F;
         margin-top: 0px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 140%;
     }
     .main-menu .basc{
         background-image: url(../images/basket-black.svg);
@@ -175,11 +179,26 @@ body{
         margin-left: 56px;
     }
 }
+@media (max-width:414px){
+    .main-container {
+        background-image: url(../images/background_modile.svg);
+    }
+    .call{
+        width: 56px;
+    }
+    .call p{
+        display: none;
+    }
+    .nav{
+        margin-bottom: 213px;
+    }
+}
 
 
 /* ----- heder intro ----- */
 
 .intro-contain{
+    position: relative;
     display: flex;
     justify-content: space-between;
 }
@@ -242,7 +261,29 @@ body{
         color: white;
     }
 }
+@media (max-width:414px){
+    .intro-contain {
+        justify-content: center;
+    }
+    .intro-photo{
+        position: absolute;
+        top: -213px;
+        width: 328px;
+        height: 198px;
+    }
+    .intro-text{
+        min-width: unset;
+        width: 328px;
+        margin-left: 0;
+    }
+    .intro-p{
+        margin-top: 16px;
+        margin-bottom: 50px;
+    }
+}
 
+
+/* Каталог */
 
 .button3{
     color: white;
@@ -363,13 +404,6 @@ body{
 .lower-part p{
     margin-top: 12.5px;
 }
-/* .still{
-    display: flex;
-    justify-content: center;
-    margin: 50px auto 150px;
-} */
-
-
 .still{
     display: flex;
     margin: 50px auto 0px auto;
@@ -422,6 +456,84 @@ body{
 .roll-up p{
     color: white;
 }
+@media (max-width:1180px){
+    .card-list {
+        grid-template-columns: 50% 50%;
+    }
+    .content {
+        max-width: 95%;
+        margin: 0 auto;
+    }
+}
+@media (max-width:414px){
+    .content {
+        max-width: 93%;
+        margin: 0 auto;
+    }
+    .card-list {
+        grid-template-columns: 100%;
+    }
+}
+
+
+/* Преимущества */
+/* О нас */
+/* Доставка */
+
+.h1{
+    color: #2D2D2F;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 120%;
+}
+.advantages_contain{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.advantages{
+    width: 580px;
+    height: 427px;
+    background-image: url(../images/advantages.jpg);
+}
+.about{
+    width: 580px;
+    height: 427px;
+    background-image: url(../images/about.jpg);
+}
+.delivery{
+    width: 580px;
+    height: 427px;
+    background-image: url(../images/truck.jpg);
+}
+.contacts-content{
+    margin-top: 250px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+.p-index{
+    width: 480px;
+    margin-right: 100px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+    color: var(--color-black);
+}
+.p-index-left{
+    width: 480px;
+    margin-left: 100px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+    color: var(--color-black);
+}
+.contacts{
+    height: 600px;
+    position: relative;
+}
 .contact-text{
     display: flex;
     justify-content: space-around;
@@ -453,63 +565,72 @@ body{
     font-size: 18px;
     line-height: 150%;
 }
-
-
-
-.h1{
-    color: #2D2D2F;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 50px;
-    line-height: 120%;
+@media (max-width:768px){
+    .p-index {
+        margin-right: 16px;
+    }
+    .p-index-left {
+        margin-left: 16px;
+    }
 }
-.advantages{
-    width: 580px;
-    height: 427px;
-    background-image: url(../images/advantages.jpg);
+@media (max-width:414px){
+    .advantages_contain{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .advantages_contain .mt50 {
+        margin-top: 0px;
+    }
+    .advantages_contain .ml10 {
+        margin-left: 0px;
+    }
+    .p-index {
+        margin-right: 0px;
+        margin-bottom: 30px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 140%;
+    }
+    .p-index-left {
+        margin-left: 0px;
+        margin-top: 30px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 140%;
+    }
+    .advantages {
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 300px;
+    }
+    .about{
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 300px;
+    }
+    .delivery{
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 300px;
+    }
+    .contact-text {
+        flex-wrap: wrap;
+    }
+    .contact-text div{
+        margin-bottom: 50px;
+    }
 }
-.about{
-    width: 580px;
-    height: 427px;
-    background-image: url(../images/about.jpg);
-}
-.delivery{
-    width: 580px;
-    height: 427px;
-    background-image: url(../images/truck.jpg);
-}
-.contacts-content{
-    margin-top: 250px;
-    max-width: 1440px;
-    margin: 0 auto;
-}
-.contacts{
-    /* max-width: 1180px; */
-    height: 600px;
-    position: relative;
-}
-.p-index{
-    width: 480px;
-    margin-right: 100px;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 150%;
-    color: var(--color-black);
-}
-.p-index-left{
-    width: 480px;
-    margin-left: 100px;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 150%;
-    color: var(--color-black);
-}
-
 
 
 /* form-contact */
+
 .form-content-container{
     max-width: 1180px;
     margin: 0 auto;
@@ -560,7 +681,7 @@ body{
     border: 1px solid #989AA9;
     border-radius: 5px;
     padding: 5px;
-    font: Open Sans;
+    font-family: Open Sans;
     resize: none;
 }
 .input-contacts{
@@ -571,8 +692,6 @@ body{
     padding-left: 5px;
     font: Open Sans;
 }
-
-
 .button-up{
     height: 150px;
     display: flex;
@@ -589,13 +708,6 @@ body{
 }
 .up:hover{
     background-image: url(../images/up_active.svg);
-}
-
-
-@media (max-width:768px){
-    .p-index {
-        margin-right: 16px;
-    }
 }
 @media (max-width:1440px){
     .contain{
@@ -614,11 +726,6 @@ body{
     }
 }
 @media (max-width:1180px){
-    .card-list {
-        margin-top: 50px;
-        display: grid;
-        grid-template-columns: 50% 50%;
-    }
     .form-contain{
         display: flex;
         flex-direction: column;
@@ -635,5 +742,22 @@ body{
 @media (max-width:768px){
     .right-nav {
         margin-right: 56px;
+    }
+}
+@media (max-width:414px){
+    .h1 {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 120%;
+    }
+    .form-content-container {
+        justify-content: center;
+    }
+    .form-content {
+        margin-top: 700px;
+    }
+    .button-up {
+        margin-top: 500px;
     }
 }

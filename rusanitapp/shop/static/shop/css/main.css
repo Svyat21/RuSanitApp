@@ -97,10 +97,16 @@ body{
 }
 
 
+/* Фотоальбом станции */
+.product_container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+}
 .container1180{
     width: 1180px;
     margin: 0 auto;
-    margin-bottom: 200px;
+    min-height: 85vh;
 }
 .description{
     margin-top: 30px;
@@ -143,6 +149,30 @@ body{
   height: 100%;
   object-fit: cover;
 }
+@media (max-width:414px){
+    .photo {
+        position: relative;
+        justify-content: center;
+        width: 100%;
+        height: 300px;
+        margin-bottom: 120px;
+    }
+    .small {
+        position: absolute;
+        bottom: -80px;
+        flex-direction: row;
+        width: 100%;
+        height: 70px;
+    }
+    .small a {
+        width: 65px;
+        height: 70px;
+    }
+}
+
+
+/* form-lable */
+
 .content-select{
     width: 580px;
     height: 448px;
@@ -168,7 +198,6 @@ body{
 .submit:hover {
     background: var(--color-highlighting-orange)
 }
-/* form-lable */
 .form{
   display: grid;
   grid-template-columns: 50% 50%;
@@ -220,7 +249,34 @@ body{
 .plus:hover{
     background-image: url(../images/plus_after.svg);
 }
-/* form-lable */
+@media (max-width:1180px){
+    .description {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width:414px){
+    .content-select {
+        width: 100%;
+        height: unset;
+    }
+    .content-select h1 {
+        text-align: center;
+    }
+    .form {
+        grid-template-columns: 100%;
+        justify-items: center;
+    }
+    .count {
+        margin-top: 85px;
+    }
+}
+
+
+
 .text p{
     margin-bottom: 30px;
 }
@@ -241,7 +297,6 @@ body{
 }
 .specifications{
     display: none;
-    /* margin-top: 30px; */
     margin-bottom: 150px;
 }
 .specifications p{
@@ -261,9 +316,22 @@ body{
 .el div{
     width: 280px;
 }
+@media (max-width:414px){
+    .el div{
+        width: 130px;
+    }
+    .specifications p {
+        font-size: 16px;
+    }
+}
+
 
 /* -------Корзина------- */
+
 .prod-basket-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 320px;
     background-color: white;
@@ -277,10 +345,13 @@ body{
     border-radius: 10px;
 }    
 .small-contain{
+    display: flex;
+    justify-content: space-between;
     width: 1100px;
     height: 240px;
 }
 .bascet-servise{
+    display: flex;
     margin-top: 20px;
 }
 .basket-prod-photo{
@@ -308,6 +379,7 @@ body{
     color: var(--color-black);
 }
 .left-prod{
+    display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: space-between;
@@ -347,8 +419,237 @@ body{
 .button-standart:hover{
     background-color: var(--color-highlighting-orange);
 }
+@media (max-width:1180px){
+    .container1180 {
+        width: 95%;
+    }
+    .small-contain {
+        width: 95%;
+    }
+}
+@media (max-width:414px){
+    .prod-basket-main {
+        position: relative;
+        height: 445px;
+    }
+    .small-contain {
+        flex-direction: column;
+        height: 405px;
+    }
+    .bascet-servise {
+        flex-direction: column;
+        align-items: center;
+    }
+    .left-prod {
+        flex-direction: row;
+    }
+    .left-prod a{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    .left-prod .full-price{
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+    }
+    .left-prod .prod-count{
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+    }
+    .basket-prod-photo {
+        width: 170px;
+        height: 176px;
+    }
+    .basket-prod-servise {
+        margin-left: unset;
+    }
+    .basket-prod-servise p{
+        font-size: 16px;
+    }
+    .create-order .h2-style {
+        font-size: 20px;
+    }
+}
 
 
+/* Офориление заказа */
+
+.order-form-left{
+    width: 500px;
+}
+.order-form-right{
+    width: 608px;
+    height: 308px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 35px rgb(152 154 169 / 20%);
+}
+.order-form-right p{
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+}
+.order-form-right-contain{
+    width: 528px;
+    height: 228px;
+}
+.parent-input input{
+    width: 100%;
+    height: 46px;
+    border: 1px solid #989AA9;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding-left: 14px;
+    font: Open Sans;
+}
+.parent-input textarea{
+    width: 100%;
+    height: 100px;
+    border: 1px solid #989AA9;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding-left: 14px;
+    padding-top: 14px;
+    padding-left: 5px;
+    font-family: Open Sans;
+    resize: none;
+}
+.addres-form{
+    width: 245px;
+}
+.buttom-standart{
+    padding: 10px 14px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: white;
+    background-color: var(--color-orange);
+    border-radius: 10px;
+    transition: background-color 0.2s linear;
+}
+.buttom-standart:hover{
+    background-color: var(--color-highlighting-orange);
+}
+.buttom-order{
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    width: 180px;
+    height: 45px;
+    appearance: none;
+    border: 0;
+    border-radius: 10px;
+    background: #FD9800;
+    color: white;
+    font-size: 18px;
+    line-height: 25px;
+    cursor: pointer;
+    transition: background-color 0.2s linear;
+}
+.buttom-order:hover{
+    background-color: var(--color-highlighting-orange);
+}
+.form-contain{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 250px;
+}
+.display-line-left{
+    display: flex;
+    align-items: center;
+}
+.display-line-left a{
+    color: white;
+    text-decoration: none;
+}
+.radio-res-top{
+    display: flex;
+    justify-content: space-between;
+}
+.radio-res-bottom{
+    display: flex;
+    align-items: center;
+}
+.pay_result{
+    background-image: url(../images/IN_CASH.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+    height: 30px;
+}
+.pay_result_cash{
+    background-image: url(../images/IN_CASH.svg);
+}
+.pay_result_transfer{
+    background-image: url(../images/MONEY_TRANSFER.svg);
+}
+.delivery_result{
+    background-image: url(../images/DELIVERY.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+    height: 30px;
+}
+.delivery_result_delivery{
+    background-image: url(../images/DELIVERY.svg);
+}
+.pickup_result_pickup{
+    background-image: url(../images/PICKUP.svg);
+}
+.radio-res-bottom p{
+    margin-left: 40px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 155%;
+    color: var(--color-light-grey);
+}
+@media (max-width:1180px){
+    .form-contain{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .order-form-right {
+        margin-top: 20px;
+        width: 608px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .buttom-order{
+        position: absolute;
+        bottom: -100px;
+        right: unset;
+    }
+}
+@media (max-width:414px){
+    .order-form-left{
+        width: 100%;
+    }
+    .addres-form {
+        width: 49%;
+    }
+    .order-form-right {
+        width: 100%;
+    }
+    .buttom-order.ml20 {
+        margin-left: unset;
+    }
+    .order-form-right-contain {
+        width: 90%;
+    }
+}
 @media (max-width:1250px){
     .right-nav {
         margin-right: 0;
@@ -358,21 +659,5 @@ body{
     }
     .left-nav {
         margin-left: 0;
-    }
-}
-
-@media (max-width:1180px){
-    .container1180 {
-        width: 95%;
-    }
-    .small-contain {
-        width: 95%;
-    }
-    .description {
-        margin-top: 30px;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        align-items: center;
     }
 }

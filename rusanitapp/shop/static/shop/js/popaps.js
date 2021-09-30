@@ -176,21 +176,23 @@ function popupClose(popupActive, doUnlock = true) {
 }
 
 function bodyLock() {
-    const lockPaddingValue = window.innerWidth - document.querySelector('.main-container').offsetWidth + 'px';
-
-    if (lockPadding.length > 0) {
-        for (let index = 0; index < lockPadding.length; index++) {
-            const el = lockPadding[index];
-            el.style.paddongRight = '0px';
+    if (document.querySelector('.main-container').offsetWidth > 768) {
+        const lockPaddingValue = window.innerWidth - document.querySelector('.main-container').offsetWidth + 'px';
+            if (lockPadding.length > 0) {
+            for (let index = 0; index < lockPadding.length; index++) {
+                const el = lockPadding[index];
+                el.style.paddongRight = '0px';
+            }
         }
-    }
-    body.style.paddingRight = lockPaddingValue;
-    body.classList.add('lock');
+        body.style.paddingRight = lockPaddingValue;
+        body.classList.add('lock');
 
-    unlock = false;
-    setTimeout(function () {
-        unlock = true;
-    }, timeout);
+        unlock = false;
+        setTimeout(function () {
+            unlock = true;
+        }, timeout);
+    }
+
 }
 
 function bodyUnLock() {

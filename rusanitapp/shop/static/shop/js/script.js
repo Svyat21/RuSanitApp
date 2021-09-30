@@ -34,7 +34,7 @@ let payWarden = new MutationObserver(function () {
 let deliveryWarden = new MutationObserver(function () {
     getDeliveryResult();
 });
-if (trackedPay) {
+if (trackedPay.item(0)) {
     payWarden.observe(trackedPay.item(0), {childList: true, subtree: true, attributes: true, characterData: true});
     deliveryWarden.observe(trackedDelivery.item(0), {childList: true, subtree: true, attributes: true, characterData: true});
 }
