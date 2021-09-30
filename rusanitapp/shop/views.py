@@ -31,13 +31,13 @@ def ordering_feedback(request):
             )
             if mail:
                 messages.success(request, 'Заявка отправлена!')
-                return HttpResponse('ok', content_type='text/html')
+                return redirect('home')
             messages.error(request, 'Ошибка отправки!')
-            return HttpResponse('no', content_type='text/html')
+            return redirect('home')
         messages.error(request, 'не все поля заполнены!')
-        return HttpResponse('no', content_type='text/html')
+        return redirect('home')
     else:
-        return HttpResponse('no', content_type='text/html')
+        return redirect('home')
 
 
 def remove_obj_basket(request, service_pk):
