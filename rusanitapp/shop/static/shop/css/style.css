@@ -677,7 +677,7 @@ body{
     border: 1px solid #989AA9;
     border-radius: 5px;
     padding: 5px;
-    font: Open Sans;
+    font-family: Open Sans;
     resize: none;
 }
 .input-contacts{
