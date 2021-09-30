@@ -589,6 +589,7 @@ body.lock{
     }
 }
 
+/* Radio select */
 
 .popup-content-pay{
     background-color: var(--color-pale-white);
@@ -636,8 +637,6 @@ body.lock{
 .radio-select p{
    margin-left: 40px;
 }
-
-
 .popup-content-delivery{
     background-color: var(--color-pale-white);
     width: 544px;
@@ -667,10 +666,6 @@ body.lock{
     background-position: left;
     height: 30px;
 }
-
-
-
-
 @media (max-width:1250px){
     .right-nav {
         margin-right: 16px;
@@ -682,25 +677,6 @@ body.lock{
         margin-left: 16px;
     }
 }
-@media (max-width:1180px){
-    .form-contain{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .order-form-right {
-        margin-top: 20px;
-        width: 608px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .buttom-order{
-        position: absolute;
-        bottom: -100px;
-        right: unset;
-    }
-}
 @media (max-width:768px){
     .right-nav {
         margin-right: 56px;
@@ -709,5 +685,38 @@ body.lock{
 @media (max-width:414px){
     .mt250 {
         margin-top: 100px;
+    }
+    .popup-content-pay {
+        width: 100%;
+        position: relative;
+    }
+    .popup-pay-contain {
+        width: 87%;
+    }
+    .popup-pay-close {
+        margin-left: unset;
+        margin-top: unset;
+        top: -75px;
+        right: 40%;
+    }
+    .popup-content-delivery {
+        width: 100%;
+        position: relative;
+    }
+    .popup-delivery-contain {
+        width: 87%;
+    }
+    .popup-delivery-close {
+        margin-left: unset;
+        margin-top: unset;
+        top: -75px;
+        right: 40%;
+    }
+    .popup .h2-style {
+        font-size: 20px;
+    }
+    .popup-delivery-contain p {
+        font-size: 12px;
+        text-align: left;
     }
 }
