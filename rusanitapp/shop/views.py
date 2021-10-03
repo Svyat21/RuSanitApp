@@ -1,43 +1,23 @@
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from shop.models import Product, SizeProduct, PhotoAlbum, Specifications, Services, Customer, Order
-from shop.forms import ServicesForm, MakingOrderForm
+from shop.forms import ServicesForm, MakingOrderForm, FeedbackForm, QuestionForm
 from django.core.mail import send_mail
-from django.core import serializers
 from django.http import JsonResponse
-
-
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
+from shop.utils import get_client_ip, feedback_message
 
 
 def ordering_feedback(request):
-    if request.GET:
-        if request.GET['name'] and request.GET['phone']:
-            mail = send_mail(
-                subject=f"Заказ обратной связи от пользователя {request.GET['name']}",
-                message=f"Заказан звонок от пользователя:\n{request.GET['name']}\n"
-                        f"Номер телефона:\n{request.GET['phone']}",
-                from_email='noreply@rs-eco.ru',
-                recipient_list=['contact@rs-eco.ru'],
-                fail_silently=False,
-            )
-            if mail:
-                messages.success(request, 'Заявка отправлена!')
-                return HttpResponse('ok', content_type='text/html')
-            messages.error(request, 'Ошибка отправки!')
-            return HttpResponse('no', content_type='text/html')
-        messages.error(request, 'не все поля заполнены!')
-        return HttpResponse('no', content_type='text/html')
-    else:
-        return HttpResponse('no', content_type='text/html')
+    if request.method == 'POST':
+        if request.POST.get('checked'):
+            form = FeedbackForm(request.POST)
+        else:
+            form = QuestionForm(request.POST)
+        if form.is_valid():
+            feedback_message(form.cleaned_data)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def remove_obj_basket(request, service_pk):
@@ -125,9 +105,11 @@ class MakingOrder(View):
 
     def get(self, request):
         form = MakingOrderForm(initial={'payment_method': Order.IN_CASH, 'delivery_option': Order.DELIVERY})
+        feedback_form = FeedbackForm()
         context = {
             'title_html': 'Оформление заказа',
             'form': form,
+            'feedback_form': feedback_form,
         }
         return render(request, 'shop/order.html', context=context)
 
@@ -149,6 +131,8 @@ class ShopHome(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_html'] = 'Главная страница'
+        context['feedback_form'] = FeedbackForm()
+        context['question_form'] = QuestionForm()
         context['user'] = self.get_user()
         return context
 
@@ -213,6 +197,7 @@ class Basket(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_html'] = 'Корзина'
+        context['feedback_form'] = FeedbackForm()
         products_shopping_cart = self.get_services()
         if not products_shopping_cart[0]:
             context['prod_list'] = None
@@ -285,6 +270,7 @@ class ShowProduct(DetailView):
         context['albums'] = self.get_album()
         context['photo_one'] = self.get_album_one()
         context['specifications'] = self.get_specifications()
+        context['feedback_form'] = FeedbackForm()
         return context
 
     def get_user(self, request):
