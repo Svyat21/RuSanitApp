@@ -40,3 +40,23 @@ class MakingOrderForm(forms.ModelForm):
             'payment_method': forms.RadioSelect(attrs={'type': 'radio'}),
             'delivery_option': forms.RadioSelect(attrs={'type': 'radio'}),
         }
+
+
+class FeedbackForm(forms.Form):
+    name_attrs = {'placeholder': 'Ваше имя', 'class': 'input-call'}
+    phone_attrs = {'placeholder': 'Телефон', 'class': 'input-call'}
+    name = forms.CharField(max_length=50, widget=forms.TextInput(attrs=name_attrs))
+    phone = forms.CharField(max_length=15, widget=forms.TextInput(attrs=phone_attrs))
+    checked = forms.BooleanField()
+
+
+class QuestionForm(forms.Form):
+    name_attrs = {'placeholder': 'Ваше имя', 'class': 'input-call'}
+    phone_attrs = {'placeholder': 'Как с вами связаться', 'class': 'input-call'}
+    name = forms.CharField(max_length=50, widget=forms.TextInput(attrs=name_attrs))
+    phone = forms.CharField(max_length=15, widget=forms.TextInput(attrs=phone_attrs))
+    question = forms.CharField(
+        max_length=255,
+        widget=forms.Textarea(attrs={'placeholder': 'Ваше сообщение или вопрос'}),
+        required=False
+    )
