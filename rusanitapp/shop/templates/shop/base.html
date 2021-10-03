@@ -137,15 +137,16 @@
             <div class="form-content">
                 <div class="form-contain-feedback">
                     <h1 class="h2-style">Остались вопросы?</h1>
-                    <form class="form-contacts" action="{% url 'feedback' %}" method="GET">
-                        <label class="mt20" for="">
-                            <input class="input-contacts" id="name_feedback" type="text" name="name" placeholder="Ваше имя">
+                    <form class="form-contacts" action="{% url 'feedback' %}" method="POST">
+                        {% csrf_token %}
+                        <label class="mt20" for="{{ question_form.name.id_for_label }}">
+                            {{ question_form.name }}
                         </label>
-                        <label class="mt15" for="">
-                            <input class="input-contacts" id="phone_feedback" type="text" name="phone" placeholder="Как с вами связаться">
+                        <label class="mt15" for="{{ question_form.phone.id_for_label }}">
+                            {{ question_form.phone }}
                         </label>
-                        <label class="mt15" for="">
-                            <textarea rows="5" maxlength="128" id="text_feedback" type="text" name="phone" placeholder="Ваше сообщение или вопрос"></textarea>
+                        <label class="mt15" for="{{ question_form.question.id_for_label }}">
+                            {{ question_form.question }}
                         </label>
                         <button class="submit-contacts" type="submit" id="feedback">ОТПРАВИТЬ</button>
                     </form>
