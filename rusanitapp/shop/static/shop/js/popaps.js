@@ -219,21 +219,3 @@ document.addEventListener('keydown', function(e) {
         popupClose(popupActive);
     }
 });
-
-document.querySelector('#feedback').addEventListener('click', function (e) {
-    $.ajax({
-    type: 'GET',
-    url: 'feedback/',
-    data: {
-        'name': $('#name_feedback').val(),
-        'phone': $('#phone_feedback').val(),
-        'checkbox': $('#checkbox_feedback').val(),
-    },
-    dataType: 'text',
-    cache: false,
-    success: false,
-    });
-    const el = document.querySelector('.close-popup');
-    popupClose(el.closest('.popup'));
-    e.preventDefault();
-})
