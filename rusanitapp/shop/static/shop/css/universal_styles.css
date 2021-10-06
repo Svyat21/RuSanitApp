@@ -199,6 +199,27 @@ body{
 .base_second_menu a:hover{
     color: var(--color-green)
 }
+.basket-full div{
+    position: relative;
+}
+.basket-full div div {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -9px;
+    margin-left: 85px;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/basket_full.svg);
+}
+.basket-full p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 155%;
+    color: white;
+}
 .right-nav{
     margin-right: 130px;
 }
@@ -590,6 +611,11 @@ body.lock{
 @media (max-width:411px){
     .popup{
         width: 411px;
+    }
+}
+@media (max-width: 375px){
+    .popup {
+        width: 375px;
     }
 }
 @media (max-width:360px){
