@@ -51,8 +51,8 @@ class FeedbackForm(forms.Form):
 
 
 class QuestionForm(forms.Form):
-    name_attrs = {'placeholder': 'Ваше имя', 'class': 'input-call'}
-    phone_attrs = {'placeholder': 'Как с вами связаться', 'class': 'input-call'}
+    name_attrs = {'placeholder': 'Ваше имя', 'class': 'input-contacts'}
+    phone_attrs = {'placeholder': 'Как с вами связаться', 'class': 'input-contacts'}
     name = forms.CharField(max_length=50, widget=forms.TextInput(attrs=name_attrs))
     phone = forms.CharField(max_length=15, widget=forms.TextInput(attrs=phone_attrs))
     question = forms.CharField(
