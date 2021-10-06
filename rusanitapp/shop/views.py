@@ -74,6 +74,7 @@ class MakingOrder(View):
             'title_html': 'Оформление заказа',
             'form': form,
             'feedback_form': feedback_form,
+            'user': get_user(request),
         }
         return render(request, 'shop/order.html', context=context)
 
@@ -125,6 +126,7 @@ class Basket(ListView):
         context = super().get_context_data(**kwargs)
         context['title_html'] = 'Корзина'
         context['feedback_form'] = FeedbackForm()
+        context['user'] = get_user(self.request)
         products_shopping_cart = self.get_services()
         if not products_shopping_cart[0]:
             context['prod_list'] = None
@@ -198,6 +200,7 @@ class ShowProduct(DetailView):
         context['photo_one'] = self.get_album_one()
         context['specifications'] = self.get_specifications()
         context['feedback_form'] = FeedbackForm()
+        context['user'] = get_user(self.request)
         return context
 
     def get_user(self, request):
