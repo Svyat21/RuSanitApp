@@ -19,4 +19,5 @@ rusanitapp/docker/postgres/
 ###
 
 #### Запуск приложения
-* Находясь в директории rusanitapp/ введите команду ```docker-compose up```
+* Находясь в директории rusanitapp/ введите команду ```docker-compose build```
+* далее ```docker-compose up```
