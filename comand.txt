@@ -1,5 +1,0 @@
-python .\manage.py runserver
-python .\manage.py makemigrations
-python .\manage.py migrate
-python .\manage.py createsuperuser
-docker-compose up -d --no-deps --build nginx #пересборка и перезапуск отдельного контейнера

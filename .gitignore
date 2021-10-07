@@ -4,3 +4,6 @@ rusanitapp/shop/migrations
 rusanitapp/media
 rusanitapp/static
 rusanitapp/docker/nginx/certs
+comand.txt
+.env
+init.sql
