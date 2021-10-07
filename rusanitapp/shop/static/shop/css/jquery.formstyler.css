@@ -16,6 +16,9 @@
 	padding: 0;
 	opacity: 0;
 }
+.jq-checkbox input {
+    display: none;
+}
 .jq-file {
 	position: relative;
 	display: inline-block;

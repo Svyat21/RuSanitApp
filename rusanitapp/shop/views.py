@@ -1,43 +1,21 @@
-from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from shop.models import Product, SizeProduct, PhotoAlbum, Specifications, Services, Customer, Order
-from shop.forms import ServicesForm, MakingOrderForm
-from django.core.mail import send_mail
-from django.core import serializers
+from shop.forms import ServicesForm, MakingOrderForm, FeedbackForm, QuestionForm
 from django.http import JsonResponse
-
-
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
+from shop.utils import get_client_ip, feedback_message, send_mail_with_order, get_queryset_to_dict, get_user
 
 
 def ordering_feedback(request):
-    if request.GET:
-        if request.GET['name'] and request.GET['phone']:
-            mail = send_mail(
-                subject=f"Заказ обратной связи от пользователя {request.GET['name']}",
-                message=f"Заказан звонок от пользователя:\n{request.GET['name']}\n"
-                        f"Номер телефона:\n{request.GET['phone']}",
-                from_email='noreply@rs-eco.ru',
-                recipient_list=['contact@rs-eco.ru'],
-                fail_silently=False,
-            )
-            if mail:
-                messages.success(request, 'Заявка отправлена!')
-                return redirect('home')
-            messages.error(request, 'Ошибка отправки!')
-            return redirect('home')
-        messages.error(request, 'не все поля заполнены!')
-        return redirect('home')
-    else:
-        return redirect('home')
+    if request.method == 'POST':
+        if request.POST.get('checked'):
+            form = FeedbackForm(request.POST)
+        else:
+            form = QuestionForm(request.POST)
+        if form.is_valid():
+            feedback_message(form.cleaned_data)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def remove_obj_basket(request, service_pk):
@@ -82,40 +60,6 @@ class MakingOrder(View):
             q_set.append((obj, serv[0], obj_price))
         return q_set, full_price
 
-    def send_mail_with_order(self, order):
-        order_prod, ful_price = self.get_services()
-        order_list = []
-        order_data = ''
-        for object in order_prod:
-            prod = f"{object[0].name}\n" \
-                   f"{object[1].count} шт. - {object[2]} руб.\n" \
-                   f"Размер: {object[1].size}\n" \
-                   f"Монтаж: {object[1].montage}\n" \
-                   f"Удлиняющая горловина: {object[1].elongated_neck}\n" \
-                   f"Монтаж горловины: {object[1].mounting_neck}\n" \
-                   f"Водоотведение: {object[1].water_disposal}\n" \
-                   f"Дополнительные опции: {object[1].additional_options}\n\n"
-            order_list.append(prod)
-        for i in order_list:
-            order_data += i
-        content_mail = f"Заявка на заказ от клиента:\n" \
-                       f"Получатель: {order['recipient']}\n" \
-                       f"Телефон: {order['phone_number']}\n" \
-                       f"Email: {order['email']}\n" \
-                       f"Город: {order['city']}. Улица: {order['street']}\n" \
-                       f"Дом: {order['house_number']}. Квартира: {order['flat']}\n" \
-                       f"Комментарий: {order['comment']}.\n" \
-                       f"Оплата: {order['payment_method']}. Тип доставки: {order['delivery_option']}\n\n" \
-                       f"Заказ на сумму - {ful_price} руб.:\n" + order_data
-        mail = send_mail(
-            subject=f"Заявка на заказ",
-            message=content_mail,
-            from_email='noreply@rs-eco.ru',
-            recipient_list=['contact@rs-eco.ru'],
-            fail_silently=False,
-        )
-        return mail
-
     def clear_basket(self):
         user = self.get_user()
         services = Services.objects.filter(customer=user)
@@ -125,9 +69,12 @@ class MakingOrder(View):
 
     def get(self, request):
         form = MakingOrderForm(initial={'payment_method': Order.IN_CASH, 'delivery_option': Order.DELIVERY})
+        feedback_form = FeedbackForm()
         context = {
             'title_html': 'Оформление заказа',
             'form': form,
+            'feedback_form': feedback_form,
+            'user': get_user(request),
         }
         return render(request, 'shop/order.html', context=context)
 
@@ -135,7 +82,8 @@ class MakingOrder(View):
         form = MakingOrderForm(request.POST)
         if form.is_valid():
             form.save()
-            mail = self.send_mail_with_order(form.cleaned_data)
+            services = self.get_services()
+            mail = send_mail_with_order(services, form.cleaned_data)
             if mail:
                 self.clear_basket()
         return redirect('home')
@@ -149,59 +97,23 @@ class ShopHome(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_html'] = 'Главная страница'
-        context['user'] = self.get_user()
+        context['feedback_form'] = FeedbackForm()
+        context['question_form'] = QuestionForm()
+        context['user'] = get_user(self.request)
         return context
 
     def get_queryset(self):
         return Product.objects.filter(is_published=True)[:4]
 
-    def get_count_prods(self, user, q_set):
-        count = 0
-        for obj in q_set:
-            serv = Services.objects.filter(product=obj).filter(customer=user)
-            if not serv:
-                continue
-            count += 1
-        if count:
-            return count
-        return None
-
-    def get_user(self):
-        ip = get_client_ip(self.request)
-        user = Customer.objects.filter(user_ip=ip)
-        if user:
-            count_prod = Product.objects.filter(customer=user[0])
-            if count_prod:
-                return self.get_count_prods(user[0], count_prod)
-        return None
-
 
 class ShowAll(View):
-    def get_queryset_to_dict(self, queryset):
-        data = []
-        for prod in queryset:
-            obj = {}
-            if prod.tag_product:
-                obj["tag_product"] = prod.tag_product
-            else:
-                obj["tag_product"] = None
-            obj["people_amount"] = prod.specifications.people_amount
-            obj["main_photo"] = prod.main_photo.url
-            obj["name"] = prod.name
-            obj["short_description"] = prod.short_description
-            obj["get_absolute_url"] = prod.get_absolute_url()
-            obj["price"] = prod.price
-            data.append(obj)
-        data.append({'count': queryset.count()})
-        return data
-
     def get(self, request):
         count_post = request.GET.get('postCount')
         if int(count_post) > 4:
             queryset = Product.objects.filter(is_published=True)[:4]
         else:
             queryset = Product.objects.filter(is_published=True)
-        data = self.get_queryset_to_dict(queryset)
+        data = get_queryset_to_dict(queryset)
         return JsonResponse({'data': data})
 
 
@@ -213,6 +125,8 @@ class Basket(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_html'] = 'Корзина'
+        context['feedback_form'] = FeedbackForm()
+        context['user'] = get_user(self.request)
         products_shopping_cart = self.get_services()
         if not products_shopping_cart[0]:
             context['prod_list'] = None
@@ -285,6 +199,8 @@ class ShowProduct(DetailView):
         context['albums'] = self.get_album()
         context['photo_one'] = self.get_album_one()
         context['specifications'] = self.get_specifications()
+        context['feedback_form'] = FeedbackForm()
+        context['user'] = get_user(self.request)
         return context
 
     def get_user(self, request):

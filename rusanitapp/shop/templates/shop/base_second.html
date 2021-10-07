@@ -26,11 +26,14 @@
                     <p class="font-logo">RuSanit</p>
                 </div>
             </a>
-            <div class="base_second_menu">
+            <div class="{% if user %}basket-full{% endif %} base_second_menu">
                 <a class="font-nav" href="{% url 'home' %}">Главная</a>
                 <a class="font-nav" href="{% url 'home' %}">Доставка</a>
                 <a class="font-nav" href="{% url 'home' %}">Контакты</a>
-                <div><a class="font-nav" href="{% url 'basket' %}">Корзина</a></div>
+                <div>
+                    <div>{% if user %}<p>{{ user }}</p>{% endif %}</div>
+                    <a class="font-nav" href="{% url 'basket' %}">Корзина</a>
+                </div>
             </div>
             <div href="#popup" class="base_second_call right-nav popup-link">
                 <div>
